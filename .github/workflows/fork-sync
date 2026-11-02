@@ -1,0 +1,170 @@
+
+name: GitHub Fork Auto Sync
+
+on:
+  # 每天 UTC 02:23 执行
+  schedule:
+    - cron: '23 2 * * *'
+
+  # 支持手动执行
+  workflow_dispatch:
+
+# 不授予默认 GITHUB_TOKEN 仓库权限
+# 跨仓库操作使用单独配置的 PAT
+permissions: {}
+
+# 防止定时任务和手动任务同时运行
+concurrency:
+  group: github-fork-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Discover and Sync Forks
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Discover and sync all forks
+        uses: actions/github-script@v7
+
+        with:
+          github-token: ${{ secrets.FORK_SYNC_TOKEN }}
+
+          script: |
+            const owner = context.repo.owner;
+
+            console.log(`GitHub account: ${owner}`);
+
+            // 1. 获取账户拥有的全部仓库
+            // 自动分页，每页最多100个
+            const repos = await github.paginate(
+              github.rest.repos.listForAuthenticatedUser,
+              {
+                type: "owner",
+                per_page: 100
+              }
+            );
+
+            // 2. 筛选 Fork 仓库
+            const forks = repos.filter(repo =>
+              repo.fork &&
+              repo.owner.login.toLowerCase() === owner.toLowerCase()
+            );
+
+            console.log(`Total repositories: ${repos.length}`);
+            console.log(`Total forks found: ${forks.length}`);
+
+            let synced = 0;
+            let skipped = 0;
+            let conflicts = 0;
+            let failed = 0;
+
+            // 3. 逐个同步
+            for (const repo of forks) {
+
+              const name = repo.full_name;
+              const upstream = repo.parent;
+
+              console.log("");
+              console.log(`========== ${name} ==========`);
+
+              // 跳过已归档仓库
+              if (repo.archived) {
+                console.log("SKIP: Repository is archived");
+                skipped++;
+                continue;
+              }
+
+              // 检查上游仓库是否存在
+              if (!upstream) {
+                console.log("SKIP: Upstream repository unavailable");
+                skipped++;
+                continue;
+              }
+
+              const forkBranch = repo.default_branch;
+              const upstreamBranch = upstream.default_branch;
+
+              // 4. 分支名称不一致时保守跳过
+              if (!forkBranch || !upstreamBranch) {
+                console.log("SKIP: Default branch unavailable");
+                skipped++;
+                continue;
+              }
+
+              if (forkBranch !== upstreamBranch) {
+                console.log(
+                  `SKIP: Branch mismatch: ` +
+                  `${forkBranch} != ${upstreamBranch}`
+                );
+                skipped++;
+                continue;
+              }
+
+              console.log(`Upstream: ${upstream.full_name}`);
+              console.log(`Branch: ${forkBranch}`);
+
+              // 5. 调用 GitHub 官方同步 API
+              try {
+
+                const response =
+                  await github.rest.repos.mergeUpstream({
+                    owner: repo.owner.login,
+                    repo: repo.name,
+                    branch: forkBranch
+                  });
+
+                console.log(
+                  `SUCCESS: ${response.data.message}`
+                );
+
+                synced++;
+
+              } catch (error) {
+
+                // 409：同步遇到合并冲突
+                if (error.status === 409) {
+                  console.log(
+                    "CONFLICT: Cannot sync automatically. Skipped."
+                  );
+
+                  conflicts++;
+                  continue;
+                }
+
+                // 422：请求无法处理，保留仓库不变
+                if (error.status === 422) {
+                  console.log(
+                    `UNPROCESSABLE: ${error.message}`
+                  );
+
+                  skipped++;
+                  continue;
+                }
+
+                // 其他错误记录下来，继续处理其他仓库
+                console.log(
+                  `FAILED: HTTP ${error.status || "unknown"}`
+                );
+                console.log(error.message);
+
+                failed++;
+              }
+            }
+
+            // 6. 输出统计
+            console.log("");
+            console.log("========== SYNC SUMMARY ==========");
+            console.log(`Total forks: ${forks.length}`);
+            console.log(`Synced: ${synced}`);
+            console.log(`Skipped: ${skipped}`);
+            console.log(`Conflicts: ${conflicts}`);
+            console.log(`Failed: ${failed}`);
+
+            // 存在真正的执行错误时，将任务标记为失败
+            if (failed > 0) {
+              core.setFailed(
+                `${failed} repository synchronization(s) failed`
+              );
+            }
