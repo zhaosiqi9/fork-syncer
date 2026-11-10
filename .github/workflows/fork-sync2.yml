@@ -92,17 +92,7 @@ jobs:
           echo "Current Git status:"
           git status --short
 
-          # 获取当前分支最新远程状态
-          BRANCH="${GITHUB_REF_NAME}"
-
-          echo "Target branch: ${BRANCH}"
-
-          git fetch origin "${BRANCH}"
-
-          # 先同步远程提交，避免并发更新导致 Push 被拒绝
-          git rebase "origin/${BRANCH}"
-
-          # 添加最新日志
+          # 先暂存并提交本地日志，保证后续 rebase 时工作区是干净的
           git add logs/latest-sync.log
 
           # 检查是否有实际变化
@@ -116,12 +106,18 @@ jobs:
 
           # 创建提交
           echo "Creating commit..."
-
           git commit -m "chore: update latest fork sync log"
+
+          # 提交后再同步远程；若远程恰好也有新日志提交，
+          # -X theirs 以本次运行生成的新日志为准，避免 rebase 冲突
+          BRANCH="${GITHUB_REF_NAME}"
+          echo "Target branch: ${BRANCH}"
+
+          git fetch origin "${BRANCH}"
+          git rebase -X theirs "origin/${BRANCH}"
 
           # 推送日志
           echo "Pushing latest log..."
-
           git push origin "HEAD:refs/heads/${BRANCH}"
 
           echo "========================================"
