@@ -25,6 +25,8 @@ const OWNER = process.env.GITHUB_OWNER;
 const API_URL = (process.env.GITHUB_API_URL || "https://api.github.com").replace(/\/$/, "");
 const LOG_FILE = process.env.LOG_FILE || "logs/latest-sync.log";
 const SUMMARY_FILE = process.env.SUMMARY_FILE;
+// 记录被本脚本临时禁用 Actions 的仓库及其原始状态，用于异常后恢复
+const ACTIONS_STATE_FILE = process.env.ACTIONS_STATE_FILE || "";
 const API_VERSION = "2022-11-28";
 const CONCURRENCY = 5;
 const MAX_RETRIES = 4;
@@ -52,13 +54,16 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function apiRequest(url, attempt = 0) {
+async function apiRequest(url, options = {}, attempt = 0) {
   const response = await fetch(url, {
+    method: options.method || "GET",
+    body: options.body,
     headers: {
       Authorization: `Bearer ${TOKEN}`,
       Accept: "application/vnd.github+json",
       "X-GitHub-Api-Version": API_VERSION,
-      "User-Agent": "github-fork-auto-sync-v2"
+      "User-Agent": "github-fork-auto-sync-v2",
+      ...(options.body ? { "Content-Type": "application/json" } : {})
     }
   });
 
@@ -76,7 +81,7 @@ async function apiRequest(url, attempt = 0) {
 
     log(`API retry: HTTP ${response.status}; waiting ${Math.ceil(waitMs / 1000)}s`);
     await sleep(waitMs);
-    return apiRequest(url, attempt + 1);
+    return apiRequest(url, options, attempt + 1);
   }
 
   if (!response.ok) {
@@ -86,6 +91,105 @@ async function apiRequest(url, attempt = 0) {
     throw error;
   }
   return response;
+}
+
+// 状态文件的内存缓存：并发 worker 通过同步读写缓存，避免文件层面的读-改-写竞态
+let actionsStateCache = null;
+
+function actionsState() {
+  if (actionsStateCache === null) {
+    if (!ACTIONS_STATE_FILE || !fs.existsSync(ACTIONS_STATE_FILE)) {
+      actionsStateCache = {};
+    } else {
+      try {
+        actionsStateCache = JSON.parse(fs.readFileSync(ACTIONS_STATE_FILE, "utf8"));
+      } catch (error) {
+        log(`WARN: cannot parse actions state file: ${errorText(error)}`);
+        actionsStateCache = {};
+      }
+    }
+  }
+  return actionsStateCache;
+}
+
+function saveActionsState() {
+  if (!ACTIONS_STATE_FILE) return;
+  const filePath = path.resolve(ACTIONS_STATE_FILE);
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  // 状态清空时删除文件，避免把空记录提交进仓库
+  if (!Object.keys(actionsStateCache).length) {
+    fs.rmSync(filePath, { force: true });
+    return;
+  }
+  fs.writeFileSync(filePath, JSON.stringify(actionsStateCache, null, 2) + "\n", "utf8");
+}
+
+/**
+ * 读取仓库 Actions 的启用状态；权限不足或接口不可用时返回 null。
+ */
+async function readActionsEnabled(fullName) {
+  try {
+    const response = await apiRequest(`${API_URL}/repos/${fullName}/actions/permissions`);
+    const data = await response.json();
+    return data.enabled === true;
+  } catch (error) {
+    log(`WARN: cannot read Actions permission for ${fullName}: ${errorText(error)}`);
+    return null;
+  }
+}
+
+/**
+ * 同步前禁用 fork 的 Actions，避免 PAT push 触发 fork 的 workflow。
+ * 返回原始状态（true/false），无法禁用时返回 null。
+ * 调用方必须在 finally 中通过 restoreActions 恢复。
+ */
+async function disableActions(fullName) {
+  const previous = await readActionsEnabled(fullName);
+  if (previous === null || previous === false) return previous;
+
+  try {
+    await apiRequest(`${API_URL}/repos/${fullName}/actions/permissions`, {
+      method: "PUT",
+      body: JSON.stringify({ enabled: false })
+    });
+    actionsState()[fullName] = true;
+    saveActionsState();
+    log(`Actions disabled: ${fullName}`);
+    return true;
+  } catch (error) {
+    log(`WARN: cannot disable Actions for ${fullName}: ${errorText(error)}`);
+    return null;
+  }
+}
+
+/**
+ * 将仓库 Actions 恢复到同步前的状态。
+ */
+async function restoreActions(fullName, previous) {
+  if (previous !== true) return;
+  try {
+    await apiRequest(`${API_URL}/repos/${fullName}/actions/permissions`, {
+      method: "PUT",
+      body: JSON.stringify({ enabled: true })
+    });
+    delete actionsState()[fullName];
+    saveActionsState();
+    log(`Actions restored: ${fullName}`);
+  } catch (error) {
+    log(`WARN: cannot restore Actions for ${fullName}: ${errorText(error)}`);
+  }
+}
+
+/**
+ * 恢复上一次运行遗留的禁用状态（主脚本被强制终止时的兜底）。
+ */
+async function restorePendingActions() {
+  const names = Object.keys(actionsState());
+  if (!names.length) return;
+  log(`Restoring Actions for ${names.length} repositories from a previous run...`);
+  for (const fullName of names) {
+    await restoreActions(fullName, actionsState()[fullName]);
+  }
 }
 
 async function listOwnedRepositories() {
@@ -216,6 +320,10 @@ async function syncRepository(repo) {
   const forkUrl = `https://github.com/${forkOwner}/${forkName}.git`;
   const upstreamUrl = `https://github.com/${upstreamOwner}/${upstreamName}.git`;
 
+  // PAT 的 push 会触发 fork 里继承自 upstream 的 push workflow，
+  // 全分支同步会产生大量无关 CI，因此推送前临时禁用，结束后必须恢复。
+  const actionsWereEnabled = await disableActions(fullName);
+
   const result = {
     status: "success",
     synced: 0, created: 0, upToDate: 0, ahead: 0,
@@ -334,6 +442,7 @@ async function syncRepository(repo) {
     totals.branchesFailed += 1;
     return result;
   } finally {
+    await restoreActions(fullName, actionsWereEnabled);
     fs.rmSync(tempDir, { recursive: true, force: true });
   }
 }
@@ -387,6 +496,8 @@ function buildSummary() {
 
 async function main() {
   if (!TOKEN) throw new Error("FORK_SYNC_TOKEN secret is missing.");
+  // 先恢复上一次运行可能遗留的禁用状态，再开始新的同步
+  await restorePendingActions();
   log("GITHUB FORK AUTO SYNC V2");
   log(`Started: ${new Date().toISOString()}`);
 
@@ -434,13 +545,30 @@ async function main() {
   }
 }
 
-main().catch(error => {
-  log(`FATAL: ${errorText(error)}`);
-  const outputPath = path.resolve(LOG_FILE);
-  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  fs.writeFileSync(outputPath, lines.join("\n") + "\n", "utf8");
-  if (SUMMARY_FILE) {
-    fs.writeFileSync(SUMMARY_FILE, `# GitHub Fork Sync V2\n\n**Fatal error:** ${errorText(error)}\n`, "utf8");
-  }
-  process.exitCode = 1;
-});
+/**
+ * 独立恢复模式：由 workflow 的 always 步骤调用，
+ * 用于恢复主脚本被强制终止时仍处于禁用状态的 fork Actions。
+ */
+async function runRestoreMode() {
+  if (!TOKEN) throw new Error("FORK_SYNC_TOKEN secret is missing.");
+  log("RESTORE ACTIONS MODE");
+  await restorePendingActions();
+}
+
+if (process.argv.includes("--restore-actions")) {
+  runRestoreMode().catch(error => {
+    log(`FATAL: ${errorText(error)}`);
+    process.exitCode = 1;
+  });
+} else {
+  main().catch(error => {
+    log(`FATAL: ${errorText(error)}`);
+    const outputPath = path.resolve(LOG_FILE);
+    fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+    fs.writeFileSync(outputPath, lines.join("\n") + "\n", "utf8");
+    if (SUMMARY_FILE) {
+      fs.writeFileSync(SUMMARY_FILE, `# GitHub Fork Sync V2\n\n**Fatal error:** ${errorText(error)}\n`, "utf8");
+    }
+    process.exitCode = 1;
+  });
+}

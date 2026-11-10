@@ -54,11 +54,24 @@ jobs:
           GITHUB_OWNER: ${{ github.repository_owner }}
           GITHUB_API_URL: ${{ github.api_url }}
           LOG_FILE: logs/latest-sync.log
+          ACTIONS_STATE_FILE: logs/actions-disabled.json
           SUMMARY_FILE: ${{ runner.temp }}/fork-sync-summary.md
         run: node scripts/sync-forks.js
 
       # =====================================
-      # 4. 提交最新同步日志
+      # 4. 恢复同步期间临时禁用的 Fork Actions
+      # 主脚本异常退出时也要执行，避免 Actions 一直处于禁用状态
+      # =====================================
+
+      - name: Restore fork Actions
+        if: always()
+        env:
+          FORK_SYNC_TOKEN: ${{ secrets.FORK_SYNC_TOKEN }}
+          ACTIONS_STATE_FILE: logs/actions-disabled.json
+        run: node scripts/sync-forks.js --restore-actions
+
+      # =====================================
+      # 5. 提交最新同步日志
       # 无论同步成功或失败，都尝试保存日志
       # =====================================
 
@@ -92,8 +105,11 @@ jobs:
           echo "Current Git status:"
           git status --short
 
-          # 先暂存并提交本地日志，保证后续 rebase 时工作区是干净的
+          # 先暂存并提交本地日志与 Actions 状态文件，保证后续 rebase 时工作区是干净的
           git add logs/latest-sync.log
+          if [ -f logs/actions-disabled.json ]; then
+            git add logs/actions-disabled.json
+          fi
 
           # 检查是否有实际变化
           if git diff --cached --quiet; then
@@ -125,7 +141,7 @@ jobs:
           echo "========================================"
 
       # =====================================
-      # 5. 输出 GitHub Actions Summary
+      # 6. 输出 GitHub Actions Summary
       # =====================================
 
       - name: Publish job summary

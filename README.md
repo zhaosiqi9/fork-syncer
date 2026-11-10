@@ -10,6 +10,7 @@
 - **定时同步**：每 6 小时运行一次（UTC 时间）。
 - **手动触发**：支持 `workflow_dispatch`，可在 Actions 页面或使用 `gh` 手动运行。
 - **逐仓库容错**：单个仓库失败不会中断其他仓库的同步。
+- **抑制 Fork CI**：同步期间临时禁用 fork 的 Actions，避免推送触发 fork 中继承自 upstream 的 workflow；同步结束后自动恢复。
 - **结果汇总**：运行结束时输出 `SYNC SUMMARY`，仅当存在真正的执行失败时标记任务失败。
 
 ## 工作原理
@@ -47,7 +48,7 @@ flowchart TD
 
 1. 创建一个可读写目标仓库的 Personal Access Token：
    - Classic token：勾选 `repo` 与 `workflow` 权限；`workflow` 用于推送包含 `.github/workflows/**` 修改的提交。
-   - Fine-grained token：对所有需要同步的 fork 授予 `Contents: Read and write` 与 `Workflows: Read and write`，并确保 token 有权列出这些仓库。
+   - Fine-grained token：对所有需要同步的 fork 授予 `Contents: Read and write`、`Workflows: Read and write` 与 `Administration: Read and write`；`Administration` 用于同步期间临时禁用并恢复 fork 的 Actions。
 2. 在本仓库的 **Settings → Secrets and variables → Actions** 中添加 secret：`FORK_SYNC_TOKEN`。
 3. 确认 workflow 已在 Actions 页面启用。
 4. 等待定时任务，或手动触发一次：
