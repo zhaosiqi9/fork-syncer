@@ -2,9 +2,9 @@
 name: GitHub Fork Auto Sync
 
 on:
-  # 每天 UTC 02:23 执行（北京时间 10:23）
+  # 每6个小时执行一次
   schedule:
-    - cron: '23 2 * * *'
+    - cron: '0 0/6 * * *'
 
   # 支持手动触发
   workflow_dispatch:
