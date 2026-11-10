@@ -46,8 +46,8 @@ flowchart TD
 ## 快速开始
 
 1. 创建一个可读写目标仓库的 Personal Access Token：
-   - Classic token：勾选 `repo` 权限。
-   - Fine-grained token：对所有需要同步的 fork 授予 `Contents: Read and write`，并确保 token 有权列出这些仓库。
+   - Classic token：勾选 `repo` 与 `workflow` 权限；`workflow` 用于推送包含 `.github/workflows/**` 修改的提交。
+   - Fine-grained token：对所有需要同步的 fork 授予 `Contents: Read and write` 与 `Workflows: Read and write`，并确保 token 有权列出这些仓库。
 2. 在本仓库的 **Settings → Secrets and variables → Actions** 中添加 secret：`FORK_SYNC_TOKEN`。
 3. 确认 workflow 已在 Actions 页面启用。
 4. 等待定时任务，或手动触发一次：

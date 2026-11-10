@@ -153,6 +153,11 @@ function classifyPushError(message) {
   if (/protected branch|protected branch hook declined|repository rule|branch protection/.test(value)) {
     return "protected";
   }
+  // PAT 缺少 workflow scope 或 SSO 未授权时同样表现为 remote rejected，
+  // 必须与分支冲突区分，否则会被静默计入 conflict 而不触发任务失败。
+  if (/without `?workflow`? scope|workflow scope|saml|sso|permission denied|not authorized/.test(value)) {
+    return "auth";
+  }
   if (/non-fast-forward|fetch first|stale info|rejected/.test(value)) {
     return "conflict";
   }
@@ -182,10 +187,21 @@ async function syncRepository(repo) {
     return { status: "failed" };
   }
 
-  const parent = repo.parent;
+  // 列表接口 GET /user/repos 不返回 parent/source 字段，必须再取一次仓库详情。
+  // 详情请求失败属于真实错误；parent 缺失属于元数据不可用，按跳过处理，避免误报失败。
+  let detail;
+  try {
+    const response = await apiRequest(`${API_URL}/repos/${repo.full_name}`);
+    detail = await response.json();
+  } catch (error) {
+    log(`REPOSITORY FAILED: cannot fetch repository detail: ${errorText(error)}`);
+    return { status: "failed" };
+  }
+
+  const parent = detail.parent;
   if (!parent || !parent.full_name) {
     log("SKIP: Upstream parent metadata is unavailable");
-    return { status: "failed" };
+    return { status: "skipped" };
   }
 
   const forkOwner = repo.owner.login;
