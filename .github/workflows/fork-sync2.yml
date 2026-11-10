@@ -1,0 +1,78 @@
+name: GitHub Fork Auto Sync
+
+on:
+  # 每 6 小时执行一次（UTC）
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+# GITHUB_TOKEN 仅用于把最新日志写回中央仓库
+permissions:
+  contents: write
+
+concurrency:
+  group: github-fork-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Discover and Sync Forks
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - name: Checkout central repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Discover and sync all fork branches
+        id: sync
+        env:
+          FORK_SYNC_TOKEN: ${{ secrets.FORK_SYNC_TOKEN }}
+          GITHUB_OWNER: ${{ github.repository_owner }}
+          GITHUB_API_URL: ${{ github.api_url }}
+          LOG_FILE: logs/latest-sync.log
+          SUMMARY_FILE: ${{ runner.temp }}/fork-sync-summary.md
+        run: node scripts/sync-forks.js
+
+      # 即使同步脚本失败，也尽量保存本次日志；每次覆盖同一个文件。
+      - name: Commit latest sync log (overwrite previous log)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          if [ ! -f logs/latest-sync.log ]; then
+            echo "No sync log was generated."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add logs/latest-sync.log
+
+          if git diff --cached --quiet; then
+            echo "Latest sync log is unchanged."
+            exit 0
+          fi
+
+          git commit -m "chore: update latest fork sync log"
+          git push
+
+      - name: Publish job summary
+        if: always()
+        shell: bash
+        run: |
+          if [ -f "${RUNNER_TEMP}/fork-sync-summary.md" ]; then
+            cat "${RUNNER_TEMP}/fork-sync-summary.md" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "## Fork sync" >> "$GITHUB_STEP_SUMMARY"
+            echo "No summary file was generated. Check the workflow logs." >> "$GITHUB_STEP_SUMMARY"
+          fi
