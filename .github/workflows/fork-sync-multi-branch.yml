@@ -198,6 +198,42 @@ jobs:
             }
 
             /**
+             * merge-upstream 404 时的兜底：直接更新 fork 的分支引用。
+             * 只允许快进（force=false）：
+             * - 成功 → 已快进到上游最新 commit
+             * - 422 → 无法快进（fork 有独有提交或已分叉），按冲突处理
+             * - 其他 → 失败
+             */
+            async function fastForwardByRef(fork, branch, upstreamSha, originalError) {
+              try {
+                await github.rest.git.updateRef({
+                  owner: fork.owner.login,
+                  repo: fork.name,
+                  ref: `heads/${branch}`,
+                  sha: upstreamSha,
+                  force: false
+                });
+
+                return {
+                  outcome: 'synced',
+                  detail: `fast-forward via refs API, upstream ${upstreamSha.slice(0, 12)}`
+                };
+              } catch (error) {
+                if (error.status === 422) {
+                  return {
+                    outcome: 'conflict',
+                    detail: `not fast-forwardable: ${errorText(error)}; merge-upstream: ${errorText(originalError)}`
+                  };
+                }
+
+                return {
+                  outcome: 'failed',
+                  detail: `refs API: HTTP ${httpStatus(error)} ${errorText(error)}; merge-upstream: ${errorText(originalError)}`
+                };
+              }
+            }
+
+            /**
              * 两侧都存在时调用官方 merge-upstream。
              * 选择该接口而不是本地 git push：
              * - 与 GitHub 网页端 “Sync fork” 行为一致；
@@ -242,12 +278,10 @@ jobs:
                   };
                 }
 
-                // 404 是检查后分支被删除等竞态
+                // 404：部分 fork-of-fork 的 master 会被 merge-upstream 误报
+                // Branch not found；退回 Git Refs API 做快进兜底
                 if (error.status === 404) {
-                  return {
-                    outcome: 'skipped',
-                    detail: 'branch disappeared during run'
-                  };
+                  return fastForwardByRef(fork, branch, upstreamSha, error);
                 }
 
                 return {
@@ -306,6 +340,16 @@ jobs:
                 }
 
                 return createMissingBranch(fork, branch, upstreamSha);
+              }
+
+              // 两端 SHA 完全相同：已经是最新，无需调用 merge-upstream。
+              // 部分 fork-of-fork 的 master 调用 merge-upstream 会误报 404，
+              // 提前比较可以避免这种假阴性。
+              if (forkBranch.commit.sha === upstreamSha) {
+                return {
+                  outcome: 'upToDate',
+                  detail: `upstream ${upstreamSha.slice(0, 12)}`
+                };
               }
 
               // 3. 两侧都存在：执行官方同步
