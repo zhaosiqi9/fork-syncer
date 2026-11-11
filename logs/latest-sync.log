@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-11T01:23:50.754Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/42938644183
+Started: 2026-11-11T01:35:58.799Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/42940107928
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -24,7 +24,7 @@ Upstream: epiral/bb-browser
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream 7975dc74b3f6)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream 7975dc74b3f6)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -54,7 +54,7 @@ Upstream: yonggekkk/Cloudflare-vless-trojan
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream 4a61f9c4e2b9)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream 4a61f9c4e2b9)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -75,7 +75,7 @@ Upstream: HKUDS/DeepTutor
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream 60fb3bdfddb3)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream 60fb3bdfddb3)
 UP-TO-DATE: dev (upstream 60fb3bdfddb3)
 
 ================================================================
@@ -85,7 +85,7 @@ Upstream: shihabal3amri/DiPlay
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream 615b32ce0b40)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream 615b32ce0b40)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -115,7 +115,7 @@ Upstream: cmliu/edgetunnel
 Default branch: main
 Candidate branches: main, master, dev
 CONFLICT: main (diverged; manual resolution required)
-SKIP: master (branch disappeared during run)
+CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -125,7 +125,7 @@ Upstream: 6Kmfi6HP/EDtunnel
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream b43206bfce1f)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream b43206bfce1f)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -135,7 +135,7 @@ Upstream: citrolabs/ego-lite
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream bacaece43900)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream bacaece43900)
 UP-TO-DATE: dev (upstream fa2de6b3699a)
 
 ================================================================
@@ -165,7 +165,7 @@ Upstream: krahets/hello-algo
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream 3079d1094c8d)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream 3079d1094c8d)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -175,7 +175,7 @@ Upstream: togg53192-cmd/jailbreaks
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream f1c94e2ac029)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream f1c94e2ac029)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -185,7 +185,7 @@ Upstream: burukeYou/JDFrame
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream bc4dc503f7e6)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream bc4dc503f7e6)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -195,7 +195,7 @@ Upstream: modstart-lib/linkandroid
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream 8c26bcf75a71)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream 8c26bcf75a71)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -255,7 +255,7 @@ Upstream: xxnuo/MusicFreePluginsHub
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream d2bf0ae40ec2)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream d2bf0ae40ec2)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -276,7 +276,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-SYNCED: dev (merge_type=fast-forward, upstream 61e80208e5a9)
+SYNCED: dev (merge_type=fast-forward, upstream 051479d035b8)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -285,7 +285,7 @@ Upstream: nexu-io/open-design
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream b4ec310921f4)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream b4ec310921f4)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -295,7 +295,7 @@ Upstream: Kuddev/pebrel
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream e1117d7e6727)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream e1117d7e6727)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -305,7 +305,7 @@ Upstream: DietrichGebert/ponytail
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream 96608e078b2d)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream 96608e078b2d)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -325,7 +325,7 @@ Upstream: shuishuipingan/qoder2api-hub
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream b2ef2a4dba24)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream b2ef2a4dba24)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -335,7 +335,7 @@ Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream e2585aa7ce31)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream e2585aa7ce31)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -345,7 +345,7 @@ Upstream: sxzxs/Real-time-translation-typing
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream abccdc15239f)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream abccdc15239f)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -365,7 +365,7 @@ Upstream: zhaoxuya520/reverse-skill
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream cab634bd855f)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream cab634bd855f)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -425,7 +425,7 @@ Upstream: pion/webrtc
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream 60271fb5672c)
-SYNCED: master (merge_type=fast-forward, upstream 60271fb5672c)
+UP-TO-DATE: master (upstream 60271fb5672c)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -445,7 +445,7 @@ Upstream: CursorTouch/Windows-MCP
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream 59e3b194799d)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream 59e3b194799d)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -465,7 +465,7 @@ Upstream: Mortonnn/workbuddy2api-hub
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream c9d762875a73)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream c9d762875a73)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -475,7 +475,7 @@ Upstream: linguo2625469/workbuddy2api-panel
 Default branch: main
 Candidate branches: main, master, dev
 CONFLICT: main (diverged; manual resolution required)
-SKIP: master (branch disappeared during run)
+CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -484,8 +484,8 @@ Repository: zhaosiqi9/workbuddy2api-panel2
 Upstream: misakano7545/workbuddy2api-panel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=merge, upstream a439202aac2f)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: main (upstream a439202aac2f)
+CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -495,7 +495,7 @@ Upstream: cmliu/WorkerVless2sub
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream 72e9c3a0300d)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream 72e9c3a0300d)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -525,7 +525,7 @@ Upstream: scholay-xsime/xsime
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream 51265c469118)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream 51265c469118)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -535,7 +535,7 @@ Upstream: ghost-him/ZeroLaunch-rs
 Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream 2ed3712860bc)
-SKIP: master (branch disappeared during run)
+UP-TO-DATE: master (upstream 2ed3712860bc)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -548,11 +548,11 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 3
+Branches synced: 1
 Branches created: 0
-Branches up-to-date: 54
-Branch conflicts: 8
-Branches skipped: 95
+Branches up-to-date: 79
+Branch conflicts: 11
+Branches skipped: 69
 Branches failed: 0
-Finished: 2026-11-11T01:25:54.376Z
+Finished: 2026-11-11T01:37:42.804Z
 ================================================================
