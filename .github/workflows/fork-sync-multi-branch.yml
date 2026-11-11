@@ -1,0 +1,664 @@
+# 本 workflow 基于 fork-sync.yml 扩展：
+# - 除默认分支外，还同步 upstream 的 main/master/dev（以及 upstream 默认分支）
+# - 每次运行覆盖写入 logs/latest-sync.log 并提交回本仓库
+# - 仅手动触发，避免与 fork-sync.yml 的定时任务重复执行
+
+name: GitHub Fork Auto Sync (main/master/dev)
+
+on:
+  # 仅手动触发
+  workflow_dispatch:
+
+# GITHUB_TOKEN 只用于把同步日志提交回本仓库；
+# 跨仓库的 fork 操作全部使用 FORK_SYNC_TOKEN。
+permissions:
+  contents: write
+
+# 与 fork-sync.yml 共用同一个并发组，避免两套同步逻辑同时修改仓库
+concurrency:
+  group: github-fork-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Discover and Sync Branches
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      # =====================================
+      # 1. 检出本仓库，用于后续提交同步日志
+      # =====================================
+
+      - name: Checkout central repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+
+      # =====================================
+      # 2. 发现并同步所有 fork 的目标分支
+      # =====================================
+
+      - name: Discover and sync fork branches
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.FORK_SYNC_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // =====================================
+            // 配置
+            // =====================================
+
+            // 每次运行固定检查的上游分支
+            const TARGET_BRANCHES = ['main', 'master', 'dev'];
+            // 同步日志固定路径，每次运行整体覆盖
+            const LOG_FILE = 'logs/latest-sync.log';
+            // fork 缺少上游分支时，从上游最新 commit 自动创建
+            const AUTO_CREATE_MISSING_BRANCHES = true;
+
+            // =====================================
+            // 日志与工具函数
+            // =====================================
+
+            const logLines = [];
+
+            /**
+             * 同时输出到 Actions 控制台和内存日志。
+             * @param {string} message 日志内容
+             */
+            function log(message = '') {
+              const line = String(message);
+              console.log(line);
+              logLines.push(line);
+            }
+
+            /**
+             * 将本次运行日志整体覆盖写入 LOG_FILE。
+             * 放在 finally 中调用，确保同步异常时也能留下现场。
+             */
+            function flushLog() {
+              try {
+                fs.mkdirSync(path.dirname(LOG_FILE), { recursive: true });
+                fs.writeFileSync(LOG_FILE, logLines.join('\n') + '\n', 'utf8');
+              } catch (error) {
+                // 落盘失败不应覆盖原始异常，只额外打印错误
+                console.error(`Failed to write sync log: ${errorText(error)}`);
+              }
+            }
+
+            /**
+             * 提取异常的可读信息，避免把 [object Object] 写进日志。
+             */
+            function errorText(error) {
+              return error && error.message ? error.message : String(error);
+            }
+
+            /**
+             * 提取 HTTP 状态码，非 HTTP 异常返回 unknown。
+             */
+            function httpStatus(error) {
+              return error && typeof error.status === 'number'
+                ? error.status
+                : 'unknown';
+            }
+
+            /**
+             * 查询分支；404 表示分支不存在，其余异常继续抛出。
+             * 这样调用方可以区分“分支不存在”和“权限/网络错误”。
+             */
+            async function getBranchOrNull(owner, repo, branch) {
+              try {
+                const { data } = await github.rest.repos.getBranch({
+                  owner,
+                  repo,
+                  branch
+                });
+                return data;
+              } catch (error) {
+                if (error.status === 404) return null;
+                throw error;
+              }
+            }
+
+            /**
+             * 计算本次需要处理的分支列表。
+             * 除 main/master/dev 外，额外加入 upstream 默认分支（如 develop），
+             * 避免只同步三个固定分支而漏掉仓库真正的主线。
+             */
+            function buildBranchCandidates(upstreamDefaultBranch) {
+              return [
+                ...new Set([...TARGET_BRANCHES, upstreamDefaultBranch].filter(Boolean))
+              ];
+            }
+
+            // =====================================
+            // 统计
+            // =====================================
+
+            const stats = {
+              discovered: 0,
+              forks: 0,
+              processed: 0,
+              archived: 0,
+              noParent: 0,
+              repoSkipped: 0,
+              repoFailed: 0,
+              synced: 0,
+              created: 0,
+              upToDate: 0,
+              conflicts: 0,
+              branchSkipped: 0,
+              failed: 0
+            };
+
+            // =====================================
+            // 单分支同步
+            // =====================================
+
+            /**
+             * fork 缺少上游分支时，从上游最新 commit 创建。
+             * fork 与 upstream 共享 Git 对象存储，因此可以直接使用上游 SHA。
+             */
+            async function createMissingBranch(fork, branch, upstreamSha) {
+              try {
+                await github.rest.git.createRef({
+                  owner: fork.owner.login,
+                  repo: fork.name,
+                  ref: `refs/heads/${branch}`,
+                  sha: upstreamSha
+                });
+
+                return {
+                  outcome: 'created',
+                  detail: `from upstream ${upstreamSha.slice(0, 12)}`
+                };
+              } catch (error) {
+                const message = errorText(error);
+
+                // 只有明确的“分支已存在”才按跳过处理；
+                // 其他 409/422（如对象不存在、权限不足）必须计为失败，避免静默漏同步
+                if (
+                  (error.status === 422 || error.status === 409) &&
+                  /already exists/i.test(message)
+                ) {
+                  return {
+                    outcome: 'skipped',
+                    detail: `branch appeared during run: ${message}`
+                  };
+                }
+
+                return {
+                  outcome: 'failed',
+                  detail: `cannot create branch: HTTP ${httpStatus(error)} ${message}`
+                };
+              }
+            }
+
+            /**
+             * 两侧都存在时调用官方 merge-upstream。
+             * 选择该接口而不是本地 git push：
+             * - 与 GitHub 网页端 “Sync fork” 行为一致；
+             * - 不需要把每个 fork 克隆到 runner；
+             * - 能自动处理快进和可合并的分叉。
+             */
+            async function mergeExistingBranch(fork, branch, upstreamSha) {
+              try {
+                const { data } = await github.rest.repos.mergeUpstream({
+                  owner: fork.owner.login,
+                  repo: fork.name,
+                  branch
+                });
+
+                const mergeType = data.merge_type || 'unknown';
+
+                // none 表示已经最新，没有产生任何提交
+                if (mergeType === 'none') {
+                  return {
+                    outcome: 'upToDate',
+                    detail: `upstream ${upstreamSha.slice(0, 12)}`
+                  };
+                }
+
+                return {
+                  outcome: 'synced',
+                  detail: `merge_type=${mergeType}, upstream ${upstreamSha.slice(0, 12)}`
+                };
+              } catch (error) {
+                if (error.status === 409) {
+                  return {
+                    outcome: 'conflict',
+                    detail: 'diverged; manual resolution required'
+                  };
+                }
+
+                // 422 可能是缺少 workflow 权限、分支保护等，归为跳过并保留原因
+                if (error.status === 422) {
+                  return {
+                    outcome: 'skipped',
+                    detail: `unprocessable: ${errorText(error)}`
+                  };
+                }
+
+                // 404 是检查后分支被删除等竞态
+                if (error.status === 404) {
+                  return {
+                    outcome: 'skipped',
+                    detail: 'branch disappeared during run'
+                  };
+                }
+
+                return {
+                  outcome: 'failed',
+                  detail: `HTTP ${httpStatus(error)} ${errorText(error)}`
+                };
+              }
+            }
+
+            /**
+             * 同步单个分支，返回 { outcome, detail }。
+             * outcome 取值：synced | created | upToDate | conflict | skipped | failed
+             */
+            async function syncBranch(fork, upstream, branch) {
+              // 1. 上游不存在该分支：没有同步的必要
+              let upstreamBranch;
+
+              try {
+                upstreamBranch = await getBranchOrNull(
+                  upstream.owner.login,
+                  upstream.name,
+                  branch
+                );
+              } catch (error) {
+                return {
+                  outcome: 'failed',
+                  detail: `cannot read upstream branch: HTTP ${httpStatus(error)} ${errorText(error)}`
+                };
+              }
+
+              if (!upstreamBranch) {
+                return { outcome: 'skipped', detail: 'not present upstream' };
+              }
+
+              const upstreamSha = upstreamBranch.commit.sha;
+
+              // 2. 检查 fork 是否存在该分支
+              let forkBranch;
+
+              try {
+                forkBranch = await getBranchOrNull(
+                  fork.owner.login,
+                  fork.name,
+                  branch
+                );
+              } catch (error) {
+                return {
+                  outcome: 'failed',
+                  detail: `cannot read fork branch: HTTP ${httpStatus(error)} ${errorText(error)}`
+                };
+              }
+
+              if (!forkBranch) {
+                if (!AUTO_CREATE_MISSING_BRANCHES) {
+                  return { outcome: 'skipped', detail: 'not present in fork' };
+                }
+
+                return createMissingBranch(fork, branch, upstreamSha);
+              }
+
+              // 3. 两侧都存在：执行官方同步
+              return mergeExistingBranch(fork, branch, upstreamSha);
+            }
+
+            /**
+             * syncBranch 的兜底包装，确保单个分支的未预期异常不会中断整轮同步。
+             */
+            async function safeSyncBranch(fork, upstream, branch) {
+              try {
+                return await syncBranch(fork, upstream, branch);
+              } catch (error) {
+                return {
+                  outcome: 'failed',
+                  detail: `unexpected error: ${errorText(error)}`
+                };
+              }
+            }
+
+            /**
+             * 根据分支结果更新统计并输出日志。
+             */
+            function reportBranchResult(branch, result) {
+              switch (result.outcome) {
+                case 'synced':
+                  stats.synced += 1;
+                  log(`SYNCED: ${branch} (${result.detail})`);
+                  break;
+                case 'created':
+                  stats.created += 1;
+                  log(`CREATED: ${branch} (${result.detail})`);
+                  break;
+                case 'upToDate':
+                  stats.upToDate += 1;
+                  log(`UP-TO-DATE: ${branch} (${result.detail})`);
+                  break;
+                case 'conflict':
+                  stats.conflicts += 1;
+                  log(`CONFLICT: ${branch} (${result.detail})`);
+                  break;
+                case 'skipped':
+                  stats.branchSkipped += 1;
+                  log(`SKIP: ${branch} (${result.detail})`);
+                  break;
+                default:
+                  stats.failed += 1;
+                  log(`FAILED: ${branch} (${result.detail})`);
+                  break;
+              }
+            }
+
+            // =====================================
+            // 单仓库同步
+            // =====================================
+
+            /**
+             * 获取 fork 的完整详情。
+             * GET /user/repos 列表接口不返回 parent 字段，必须再请求一次详情。
+             * 返回 null 表示已记录日志并应跳过当前仓库。
+             */
+            async function fetchForkDetail(repo) {
+              try {
+                const { data } = await github.rest.repos.get({
+                  owner: repo.owner.login,
+                  repo: repo.name
+                });
+                return data;
+              } catch (error) {
+                if (error.status === 404) {
+                  stats.repoSkipped += 1;
+                  log('SKIP: repository no longer exists (HTTP 404)');
+                } else {
+                  stats.repoFailed += 1;
+                  log(
+                    `FAILED: cannot fetch repository detail: HTTP ${httpStatus(error)} ${errorText(error)}`
+                  );
+                }
+                return null;
+              }
+            }
+
+            /**
+             * 同步一个 fork 的所有目标分支。
+             */
+            async function syncRepository(repo) {
+              log('');
+              log('================================================================');
+              log(`Repository: ${repo.full_name}`);
+              log('================================================================');
+
+              if (repo.archived) {
+                stats.archived += 1;
+                log('SKIP: repository is archived');
+                return;
+              }
+
+              if (repo.disabled) {
+                stats.repoSkipped += 1;
+                log('SKIP: repository is disabled');
+                return;
+              }
+
+              stats.processed += 1;
+
+              const detail = await fetchForkDetail(repo);
+              if (!detail) return;
+
+              if (!detail.fork) {
+                stats.repoSkipped += 1;
+                log('SKIP: repository is not a fork');
+                return;
+              }
+
+              const upstream = detail.parent;
+              if (!upstream) {
+                stats.noParent += 1;
+                log('SKIP: upstream parent metadata is unavailable');
+                return;
+              }
+
+              const candidates = buildBranchCandidates(upstream.default_branch);
+
+              log(`Upstream: ${upstream.full_name}`);
+              log(`Default branch: ${upstream.default_branch || 'unknown'}`);
+              log(`Candidate branches: ${candidates.join(', ')}`);
+
+              for (const branch of candidates) {
+                const result = await safeSyncBranch(detail, upstream, branch);
+                reportBranchResult(branch, result);
+              }
+            }
+
+            // =====================================
+            // 汇总
+            // =====================================
+
+            function buildMarkdownSummary() {
+              return [
+                '## GitHub Fork Sync (main/master/dev)',
+                '',
+                `- Discovered repositories: **${stats.discovered}**`,
+                `- Forks found: **${stats.forks}**`,
+                `- Processed: **${stats.processed}**`,
+                '',
+                '| Branch result | Count |',
+                '| --- | ---: |',
+                `| Synced | ${stats.synced} |`,
+                `| Created | ${stats.created} |`,
+                `| Up-to-date | ${stats.upToDate} |`,
+                `| Conflicts | ${stats.conflicts} |`,
+                `| Skipped | ${stats.branchSkipped} |`,
+                `| Failed | ${stats.failed} |`,
+                '',
+                `Repository failures: **${stats.repoFailed}**`,
+                ''
+              ].join('\n');
+            }
+
+            function logSummary() {
+              log('');
+              log('================================================================');
+              log('SYNC SUMMARY');
+              log('================================================================');
+              log(`Repositories discovered: ${stats.discovered}`);
+              log(`Forks found: ${stats.forks}`);
+              log(`Processed: ${stats.processed}`);
+              log(`Archived: ${stats.archived}`);
+              log(`Parent unavailable: ${stats.noParent}`);
+              log(`Repository skipped: ${stats.repoSkipped}`);
+              log(`Repository failed: ${stats.repoFailed}`);
+              log(`Branches synced: ${stats.synced}`);
+              log(`Branches created: ${stats.created}`);
+              log(`Branches up-to-date: ${stats.upToDate}`);
+              log(`Branch conflicts: ${stats.conflicts}`);
+              log(`Branches skipped: ${stats.branchSkipped}`);
+              log(`Branches failed: ${stats.failed}`);
+              log(`Finished: ${new Date().toISOString()}`);
+              log('================================================================');
+            }
+
+            /**
+             * 写入 Actions 运行摘要；失败时只告警，不影响同步结果。
+             */
+            async function publishSummary() {
+              try {
+                await core.summary.addRaw(buildMarkdownSummary()).write();
+              } catch (error) {
+                log(`WARNING: cannot write job summary: ${errorText(error)}`);
+              }
+            }
+
+            /**
+             * 只有真正的错误才让 job 失败；
+             * 冲突和跳过属于需要人工关注的状态，不算执行失败。
+             */
+            function failIfNeeded() {
+              if (stats.conflicts > 0) {
+                core.warning(
+                  `${stats.conflicts} branch(es) have conflicts and need manual resolution`
+                );
+              }
+
+              if (stats.repoFailed > 0 || stats.failed > 0) {
+                core.setFailed(
+                  `${stats.repoFailed} repository(s) and ${stats.failed} branch(es) failed`
+                );
+              }
+            }
+
+            // =====================================
+            // 主流程
+            // =====================================
+
+            /**
+             * 解析 token 实际所属账号。
+             * 中央仓库可能位于组织下，此时 github.repository_owner 不等于
+             * token 所属账号；用 /user 接口避免筛选出错误的 fork 集合。
+             */
+            async function resolveOwner() {
+              try {
+                const { data } = await github.rest.users.getAuthenticated();
+                return data.login;
+              } catch (error) {
+                const fallback = context.repo.owner;
+                log(
+                  `WARNING: cannot resolve authenticated user (HTTP ${httpStatus(error)}); fallback to ${fallback}`
+                );
+                return fallback;
+              }
+            }
+
+            /**
+             * 分页获取账号下的全部仓库，并筛选出 fork。
+             */
+            async function discoverForks(owner) {
+              const repos = await github.paginate(
+                github.rest.repos.listForAuthenticatedUser,
+                {
+                  type: 'owner',
+                  per_page: 100
+                }
+              );
+
+              stats.discovered = repos.length;
+
+              const forks = repos.filter(
+                repo =>
+                  repo.fork === true &&
+                  repo.owner &&
+                  repo.owner.login.toLowerCase() === owner.toLowerCase()
+              );
+
+              stats.forks = forks.length;
+
+              log(`Discovered repositories: ${repos.length}`);
+              log(`Forks found: ${forks.length}`);
+
+              return forks;
+            }
+
+            async function run() {
+              log('GITHUB FORK AUTO SYNC (main/master/dev)');
+              log(`Started: ${new Date().toISOString()}`);
+              log(
+                `Workflow run: https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
+              );
+              log(
+                'Policy: create missing fork branches from upstream; never force-push; never delete branches.'
+              );
+              log('');
+
+              const owner = await resolveOwner();
+              log(`Authenticated GitHub user: ${owner}`);
+
+              const forks = await discoverForks(owner);
+
+              for (const repo of forks) {
+                await syncRepository(repo);
+              }
+
+              logSummary();
+              await publishSummary();
+              failIfNeeded();
+            }
+
+            let fatalError = null;
+
+            try {
+              await run();
+            } catch (error) {
+              fatalError = error;
+              log('');
+              log(`FATAL: ${errorText(error)}`);
+            } finally {
+              flushLog();
+            }
+
+            if (fatalError) {
+              core.setFailed(`Fork sync failed: ${errorText(fatalError)}`);
+            }
+
+      # =====================================
+      # 3. 覆盖提交最新同步日志
+      # 无论同步成功或失败都执行，保证失败现场也能留档
+      # =====================================
+
+      - name: Commit latest sync log
+        if: always()
+        shell: bash
+        env:
+          TARGET_BRANCH: ${{ github.ref_name }}
+        run: |
+          set -Eeuo pipefail
+
+          # 避免 rebase 在非交互环境下等待编辑器，或等待凭据输入
+          export GIT_EDITOR=true
+          export GIT_TERMINAL_PROMPT=0
+
+          LOG_FILE="logs/latest-sync.log"
+
+          if [ -z "${TARGET_BRANCH}" ]; then
+            echo "::warning::Target branch is empty; skip log commit."
+            exit 0
+          fi
+
+          if [ ! -d ".git" ]; then
+            echo "::warning::Workspace is not a Git repository; skip log commit."
+            exit 0
+          fi
+
+          if [ ! -f "$LOG_FILE" ]; then
+            echo "::warning::Sync log does not exist; skip log commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add "$LOG_FILE"
+
+          if git diff --cached --quiet; then
+            echo "No log changes detected."
+            exit 0
+          fi
+
+          git commit -m "chore: update latest fork sync log"
+
+          echo "Target branch: ${TARGET_BRANCH}"
+
+          # 先提交本地日志，再 rebase 到远程最新提交；
+          # -X theirs 保证并发推送时以本次运行生成的日志为准。
+          git fetch origin "${TARGET_BRANCH}"
+          git rebase -X theirs "origin/${TARGET_BRANCH}"
+
+          git push origin "HEAD:refs/heads/${TARGET_BRANCH}"
