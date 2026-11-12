@@ -1,12 +1,16 @@
 # 本 workflow 基于 fork-sync.yml 扩展：
 # - 除默认分支外，还同步 upstream 的 main/master/dev（以及 upstream 默认分支）
 # - 每次运行覆盖写入 logs/latest-sync.log 并提交回本仓库
-# - 仅手动触发，避免与 fork-sync.yml 的定时任务重复执行
+# - 每 6 小时定时执行一次，同时支持手动触发
 
 name: GitHub Fork Auto Sync (main/master/dev)
 
 on:
-  # 仅手动触发
+  # 每6个小时执行一次
+  schedule:
+    - cron: '0 0/6 * * *'
+
+  # 支持手动触发
   workflow_dispatch:
 
 # GITHUB_TOKEN 只用于把同步日志提交回本仓库；
