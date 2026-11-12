@@ -1,11 +1,11 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-12T03:34:37.668Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43149121344
+Started: 2026-11-12T19:54:41.054Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43294949800
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
-Discovered repositories: 71
-Forks found: 56
+Discovered repositories: 72
+Forks found: 57
 
 ================================================================
 Repository: zhaosiqi9/AutoJs6
@@ -154,7 +154,7 @@ Repository: zhaosiqi9/halo
 Upstream: halo-dev/halo
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream c47762117e36)
+SYNCED: main (merge_type=fast-forward, upstream e687200ecd1e)
 CONFLICT: master (diverged; manual resolution required)
 SKIP: dev (not present upstream)
 
@@ -174,7 +174,7 @@ Repository: zhaosiqi9/jailbreaks
 Upstream: togg53192-cmd/jailbreaks
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream ee999ee66d31)
+UP-TO-DATE: main (upstream ee999ee66d31)
 UP-TO-DATE: master (upstream ee999ee66d31)
 SKIP: dev (not present upstream)
 
@@ -276,7 +276,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-SYNCED: dev (merge_type=fast-forward, upstream 87ab029c12b3)
+SYNCED: dev (merge_type=fast-forward, upstream 793cb219586f)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -284,8 +284,8 @@ Repository: zhaosiqi9/open-design
 Upstream: nexu-io/open-design
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 614795896e09)
-UP-TO-DATE: master (upstream 614795896e09)
+SYNCED: main (merge_type=fast-forward, upstream bc06128813c9)
+UP-TO-DATE: master (upstream bc06128813c9)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -294,8 +294,8 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 6fc6042a78bd)
-UP-TO-DATE: master (upstream 6fc6042a78bd)
+SYNCED: main (merge_type=fast-forward, upstream 4c15fe5a2346)
+UP-TO-DATE: master (upstream 4c15fe5a2346)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -304,8 +304,8 @@ Repository: zhaosiqi9/pebrel
 Upstream: Kuddev/pebrel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 4807f2896627)
-UP-TO-DATE: master (upstream 4807f2896627)
+SYNCED: main (merge_type=fast-forward, upstream bb8d3c72e9c5)
+UP-TO-DATE: master (upstream bb8d3c72e9c5)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -334,8 +334,8 @@ Repository: zhaosiqi9/qoder2api-hub
 Upstream: shuishuipingan/qoder2api-hub
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 0b0885f5689b)
-UP-TO-DATE: master (upstream 0b0885f5689b)
+SYNCED: main (merge_type=fast-forward, upstream 2fad95d83a49)
+UP-TO-DATE: master (upstream 2fad95d83a49)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -344,8 +344,8 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream a01674377f1f)
-UP-TO-DATE: master (upstream a01674377f1f)
+SYNCED: main (merge_type=fast-forward, upstream a8527d43b843)
+UP-TO-DATE: master (upstream a8527d43b843)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -429,6 +429,16 @@ UP-TO-DATE: master (upstream fe0b0cdb3ac3)
 SKIP: dev (not present upstream)
 
 ================================================================
+Repository: zhaosiqi9/turb-gpt-free-register
+================================================================
+Upstream: myfanhua/turb-gpt-free-register
+Default branch: main
+Candidate branches: main, master, dev
+UP-TO-DATE: main (upstream e59bddf2bcf5)
+UP-TO-DATE: master (upstream e59bddf2bcf5)
+SKIP: dev (not present upstream)
+
+================================================================
 Repository: zhaosiqi9/turbo
 ================================================================
 Upstream: didi/turbo
@@ -474,8 +484,8 @@ Repository: zhaosiqi9/Windows-MCP
 Upstream: CursorTouch/Windows-MCP
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream a967dd5e2125)
-UP-TO-DATE: master (upstream a967dd5e2125)
+SYNCED: main (merge_type=fast-forward, upstream 106b50c4e50c)
+UP-TO-DATE: master (upstream 106b50c4e50c)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -514,7 +524,7 @@ Repository: zhaosiqi9/workbuddy2api-panel2
 Upstream: misakano7545/workbuddy2api-panel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=merge, upstream 8125831de3f1)
+SYNCED: main (merge_type=merge, upstream 1c007bb0933d)
 CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
@@ -554,8 +564,8 @@ Repository: zhaosiqi9/xsime
 Upstream: scholay-xsime/xsime
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 4678afc5d361)
-UP-TO-DATE: master (upstream 4678afc5d361)
+SYNCED: main (merge_type=fast-forward, upstream 8681537a8657)
+UP-TO-DATE: master (upstream 8681537a8657)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -571,18 +581,18 @@ SKIP: dev (not present upstream)
 ================================================================
 SYNC SUMMARY
 ================================================================
-Repositories discovered: 71
-Forks found: 56
-Processed: 56
+Repositories discovered: 72
+Forks found: 57
+Processed: 57
 Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 11
+Branches synced: 10
 Branches created: 0
-Branches up-to-date: 74
+Branches up-to-date: 77
 Branch conflicts: 11
-Branches skipped: 73
+Branches skipped: 74
 Branches failed: 0
-Finished: 2026-11-12T03:36:36.215Z
+Finished: 2026-11-12T19:56:45.141Z
 ================================================================
