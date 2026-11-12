@@ -6,9 +6,9 @@
 name: GitHub Fork Auto Sync (main/master/dev)
 
 on:
-  # 每6个小时执行一次
+  # 每6个小时执行一次；避开整点，降低 GitHub 定时延迟/丢弃的概率
   schedule:
-    - cron: '0 0/6 * * *'
+    - cron: '17 */6 * * *'
 
   # 支持手动触发
   workflow_dispatch:
