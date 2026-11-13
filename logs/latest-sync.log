@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-13T12:00:46.508Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43421584700
+Started: 2026-11-13T18:00:46.070Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43478380183
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -14,7 +14,7 @@ Upstream: SuperMonster003/AutoJs6
 Default branch: master
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
-FAILED: master (HTTP 502 Server Error)
+FAILED: master (HTTP 500 Unexpected end of JSON input)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -94,8 +94,8 @@ Repository: zhaosiqi9/doubaowork2api
 Upstream: ardeyouxipianyi/doubaowork2api
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 2dbb09500420)
-UP-TO-DATE: master (upstream 2dbb09500420)
+SKIP: main (not present upstream)
+SKIP: master (not present upstream)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -164,7 +164,7 @@ Repository: zhaosiqi9/halo
 Upstream: halo-dev/halo
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream cd17256aeb0c)
+UP-TO-DATE: main (upstream cd17256aeb0c)
 CONFLICT: master (diverged; manual resolution required)
 SKIP: dev (not present upstream)
 
@@ -286,7 +286,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-UP-TO-DATE: dev (upstream dbe4960070f6)
+SYNCED: dev (merge_type=fast-forward, upstream 4a26ea11815c)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -294,7 +294,7 @@ Repository: zhaosiqi9/open-design
 Upstream: nexu-io/open-design
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 59e4f2ae85de)
+UP-TO-DATE: main (upstream 59e4f2ae85de)
 UP-TO-DATE: master (upstream 59e4f2ae85de)
 SKIP: dev (not present upstream)
 
@@ -304,8 +304,8 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 6f83f8cad004)
-UP-TO-DATE: master (upstream 6f83f8cad004)
+SYNCED: main (merge_type=fast-forward, upstream 3c781296d6e4)
+UP-TO-DATE: master (upstream 3c781296d6e4)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -344,8 +344,8 @@ Repository: zhaosiqi9/qoder2api-hub
 Upstream: shuishuipingan/qoder2api-hub
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream 2fad95d83a49)
-UP-TO-DATE: master (upstream 2fad95d83a49)
+SYNCED: main (merge_type=fast-forward, upstream d0f4837c8f38)
+UP-TO-DATE: master (upstream d0f4837c8f38)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -354,8 +354,8 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream bbe2bcc979be)
-UP-TO-DATE: master (upstream bbe2bcc979be)
+SYNCED: main (merge_type=fast-forward, upstream 3cb75d46bf6e)
+UP-TO-DATE: master (upstream 3cb75d46bf6e)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -504,7 +504,7 @@ Repository: zhaosiqi9/Windows-MCP
 Upstream: CursorTouch/Windows-MCP
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 7e32eaf76f5d)
+UP-TO-DATE: main (upstream 7e32eaf76f5d)
 UP-TO-DATE: master (upstream 7e32eaf76f5d)
 SKIP: dev (not present upstream)
 
@@ -594,8 +594,8 @@ Repository: zhaosiqi9/ZeroLaunch-rs
 Upstream: ghost-him/ZeroLaunch-rs
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream 2ed3712860bc)
-UP-TO-DATE: master (upstream 2ed3712860bc)
+SYNCED: main (merge_type=fast-forward, upstream c4ca1ed07000)
+UP-TO-DATE: master (upstream c4ca1ed07000)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -608,11 +608,11 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 6
+Branches synced: 5
 Branches created: 0
-Branches up-to-date: 85
+Branches up-to-date: 84
 Branch conflicts: 10
-Branches skipped: 76
+Branches skipped: 78
 Branches failed: 1
-Finished: 2026-11-13T12:02:59.117Z
+Finished: 2026-11-13T18:03:02.607Z
 ================================================================
