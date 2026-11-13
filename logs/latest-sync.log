@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-12T19:54:41.054Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43294949800
+Started: 2026-11-13T00:57:23.626Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43341145252
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -154,7 +154,7 @@ Repository: zhaosiqi9/halo
 Upstream: halo-dev/halo
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream e687200ecd1e)
+UP-TO-DATE: main (upstream e687200ecd1e)
 CONFLICT: master (diverged; manual resolution required)
 SKIP: dev (not present upstream)
 
@@ -174,8 +174,8 @@ Repository: zhaosiqi9/jailbreaks
 Upstream: togg53192-cmd/jailbreaks
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream ee999ee66d31)
-UP-TO-DATE: master (upstream ee999ee66d31)
+SYNCED: main (merge_type=fast-forward, upstream 4c06343e5173)
+UP-TO-DATE: master (upstream 4c06343e5173)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -276,7 +276,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-SYNCED: dev (merge_type=fast-forward, upstream 793cb219586f)
+UP-TO-DATE: dev (upstream 793cb219586f)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -284,7 +284,7 @@ Repository: zhaosiqi9/open-design
 Upstream: nexu-io/open-design
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream bc06128813c9)
+UP-TO-DATE: main (upstream bc06128813c9)
 UP-TO-DATE: master (upstream bc06128813c9)
 SKIP: dev (not present upstream)
 
@@ -294,8 +294,8 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 4c15fe5a2346)
-UP-TO-DATE: master (upstream 4c15fe5a2346)
+SYNCED: main (merge_type=fast-forward, upstream bff6a12e2f63)
+UP-TO-DATE: master (upstream bff6a12e2f63)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -304,7 +304,7 @@ Repository: zhaosiqi9/pebrel
 Upstream: Kuddev/pebrel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream bb8d3c72e9c5)
+UP-TO-DATE: main (upstream bb8d3c72e9c5)
 UP-TO-DATE: master (upstream bb8d3c72e9c5)
 SKIP: dev (not present upstream)
 
@@ -334,7 +334,7 @@ Repository: zhaosiqi9/qoder2api-hub
 Upstream: shuishuipingan/qoder2api-hub
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 2fad95d83a49)
+UP-TO-DATE: main (upstream 2fad95d83a49)
 UP-TO-DATE: master (upstream 2fad95d83a49)
 SKIP: dev (not present upstream)
 
@@ -344,8 +344,8 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream a8527d43b843)
-UP-TO-DATE: master (upstream a8527d43b843)
+SYNCED: main (merge_type=fast-forward, upstream 937d10df1c70)
+UP-TO-DATE: master (upstream 937d10df1c70)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -475,7 +475,7 @@ Upstream: ruanyf/weekly
 Default branch: master
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
-UP-TO-DATE: master (upstream c57527f3534e)
+SYNCED: master (merge_type=fast-forward, upstream d09cdac3791b)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -484,7 +484,7 @@ Repository: zhaosiqi9/Windows-MCP
 Upstream: CursorTouch/Windows-MCP
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 106b50c4e50c)
+UP-TO-DATE: main (upstream 106b50c4e50c)
 UP-TO-DATE: master (upstream 106b50c4e50c)
 SKIP: dev (not present upstream)
 
@@ -524,7 +524,7 @@ Repository: zhaosiqi9/workbuddy2api-panel2
 Upstream: misakano7545/workbuddy2api-panel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=merge, upstream 1c007bb0933d)
+SYNCED: main (merge_type=merge, upstream 2b7ac6dea09c)
 CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
@@ -564,7 +564,7 @@ Repository: zhaosiqi9/xsime
 Upstream: scholay-xsime/xsime
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 8681537a8657)
+UP-TO-DATE: main (upstream 8681537a8657)
 UP-TO-DATE: master (upstream 8681537a8657)
 SKIP: dev (not present upstream)
 
@@ -588,11 +588,11 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 10
+Branches synced: 5
 Branches created: 0
-Branches up-to-date: 77
+Branches up-to-date: 82
 Branch conflicts: 11
 Branches skipped: 74
 Branches failed: 0
-Finished: 2026-11-12T19:56:45.141Z
+Finished: 2026-11-13T00:59:04.123Z
 ================================================================
