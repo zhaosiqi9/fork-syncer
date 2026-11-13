@@ -1,11 +1,11 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-13T06:00:46.710Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43375721564
+Started: 2026-11-13T06:46:56.749Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43381077022
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
-Discovered repositories: 72
-Forks found: 57
+Discovered repositories: 73
+Forks found: 58
 
 ================================================================
 Repository: zhaosiqi9/AutoJs6
@@ -89,6 +89,16 @@ UP-TO-DATE: master (upstream 615b32ce0b40)
 SKIP: dev (not present upstream)
 
 ================================================================
+Repository: zhaosiqi9/doubaowork2api
+================================================================
+Upstream: ardeyouxipianyi/doubaowork2api
+Default branch: main
+Candidate branches: main, master, dev
+UP-TO-DATE: main (upstream f1951f21f1d3)
+UP-TO-DATE: master (upstream f1951f21f1d3)
+SKIP: dev (not present upstream)
+
+================================================================
 Repository: zhaosiqi9/dsh-free-search
 ================================================================
 Upstream: DDDMUC/dsh-free-search
@@ -154,7 +164,7 @@ Repository: zhaosiqi9/halo
 Upstream: halo-dev/halo
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 68cf2258e761)
+UP-TO-DATE: main (upstream 68cf2258e761)
 CONFLICT: master (diverged; manual resolution required)
 SKIP: dev (not present upstream)
 
@@ -276,7 +286,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-SYNCED: dev (merge_type=fast-forward, upstream dbe4960070f6)
+UP-TO-DATE: dev (upstream dbe4960070f6)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -284,7 +294,7 @@ Repository: zhaosiqi9/open-design
 Upstream: nexu-io/open-design
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream e427ad965595)
+UP-TO-DATE: main (upstream e427ad965595)
 UP-TO-DATE: master (upstream e427ad965595)
 SKIP: dev (not present upstream)
 
@@ -294,8 +304,8 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 73df48db7c27)
-UP-TO-DATE: master (upstream 73df48db7c27)
+SYNCED: main (merge_type=fast-forward, upstream cdecb5916cb7)
+UP-TO-DATE: master (upstream cdecb5916cb7)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -304,7 +314,7 @@ Repository: zhaosiqi9/pebrel
 Upstream: Kuddev/pebrel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 09e5eb47ed38)
+UP-TO-DATE: main (upstream 09e5eb47ed38)
 UP-TO-DATE: master (upstream 09e5eb47ed38)
 SKIP: dev (not present upstream)
 
@@ -344,7 +354,7 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 54906fdb1fc7)
+UP-TO-DATE: main (upstream 54906fdb1fc7)
 UP-TO-DATE: master (upstream 54906fdb1fc7)
 SKIP: dev (not present upstream)
 
@@ -524,7 +534,7 @@ Repository: zhaosiqi9/workbuddy2api-panel2
 Upstream: misakano7545/workbuddy2api-panel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=merge, upstream 7a48d72e9b46)
+UP-TO-DATE: main (upstream 7a48d72e9b46)
 CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
@@ -581,18 +591,18 @@ SKIP: dev (not present upstream)
 ================================================================
 SYNC SUMMARY
 ================================================================
-Repositories discovered: 72
-Forks found: 57
-Processed: 57
+Repositories discovered: 73
+Forks found: 58
+Processed: 58
 Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 7
+Branches synced: 1
 Branches created: 0
-Branches up-to-date: 80
+Branches up-to-date: 88
 Branch conflicts: 11
-Branches skipped: 74
+Branches skipped: 75
 Branches failed: 0
-Finished: 2026-11-13T06:02:49.722Z
+Finished: 2026-11-13T06:48:31.839Z
 ================================================================
