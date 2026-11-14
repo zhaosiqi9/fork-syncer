@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-14T18:00:47.198Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43624181489
+Started: 2026-11-14T18:02:58.045Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43624307530
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -286,7 +286,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-SYNCED: dev (merge_type=fast-forward, upstream 1e3359770ea9)
+UP-TO-DATE: dev (upstream 1e3359770ea9)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -304,7 +304,7 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 913ad6616c61)
+UP-TO-DATE: main (upstream 913ad6616c61)
 UP-TO-DATE: master (upstream 913ad6616c61)
 SKIP: dev (not present upstream)
 
@@ -314,7 +314,7 @@ Repository: zhaosiqi9/pebrel
 Upstream: Kuddev/pebrel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream db6da9117711)
+UP-TO-DATE: main (upstream db6da9117711)
 UP-TO-DATE: master (upstream db6da9117711)
 SKIP: dev (not present upstream)
 
@@ -354,7 +354,7 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 1ba93b460220)
+UP-TO-DATE: main (upstream 1ba93b460220)
 UP-TO-DATE: master (upstream 1ba93b460220)
 SKIP: dev (not present upstream)
 
@@ -384,7 +384,7 @@ Repository: zhaosiqi9/reverse-skill
 Upstream: zhaoxuya520/reverse-skill
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream b972ad0e90f2)
+UP-TO-DATE: main (upstream b972ad0e90f2)
 UP-TO-DATE: master (upstream b972ad0e90f2)
 SKIP: dev (not present upstream)
 
@@ -495,7 +495,7 @@ Upstream: ruanyf/weekly
 Default branch: master
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
-SYNCED: master (merge_type=fast-forward, upstream 36caf847da5a)
+UP-TO-DATE: master (upstream 36caf847da5a)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -608,11 +608,11 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 6
+Branches synced: 0
 Branches created: 0
-Branches up-to-date: 83
+Branches up-to-date: 89
 Branch conflicts: 11
 Branches skipped: 78
 Branches failed: 0
-Finished: 2026-11-14T18:02:45.641Z
+Finished: 2026-11-14T18:04:34.378Z
 ================================================================
