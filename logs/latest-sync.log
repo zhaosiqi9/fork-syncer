@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-13T19:43:21.981Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43494843592
+Started: 2026-11-14T00:00:46.212Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43531214892
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -286,7 +286,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-UP-TO-DATE: dev (upstream 4a26ea11815c)
+SYNCED: dev (merge_type=fast-forward, upstream 7965c481f5a6)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -304,8 +304,8 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 88f73630a63d)
-UP-TO-DATE: master (upstream 88f73630a63d)
+SYNCED: main (merge_type=fast-forward, upstream 22fe1702be41)
+UP-TO-DATE: master (upstream 22fe1702be41)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -354,8 +354,8 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream da91bbd4eb41)
-UP-TO-DATE: master (upstream da91bbd4eb41)
+SYNCED: main (merge_type=fast-forward, upstream 5815178a8d58)
+UP-TO-DATE: master (upstream 5815178a8d58)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -608,11 +608,11 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 2
+Branches synced: 3
 Branches created: 0
-Branches up-to-date: 87
+Branches up-to-date: 86
 Branch conflicts: 11
 Branches skipped: 78
 Branches failed: 0
-Finished: 2026-11-13T19:45:53.567Z
+Finished: 2026-11-14T00:02:42.465Z
 ================================================================
