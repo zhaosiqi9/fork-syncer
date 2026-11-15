@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-14T22:24:41.533Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43647943373
+Started: 2026-11-15T00:00:45.931Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43656031828
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -286,7 +286,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-UP-TO-DATE: dev (upstream 1e3359770ea9)
+SYNCED: dev (merge_type=fast-forward, upstream 1747f64528e8)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -304,7 +304,7 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 0af3bd00e771)
+UP-TO-DATE: main (upstream 0af3bd00e771)
 UP-TO-DATE: master (upstream 0af3bd00e771)
 SKIP: dev (not present upstream)
 
@@ -354,8 +354,8 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream f3b697da5a69)
-UP-TO-DATE: master (upstream f3b697da5a69)
+SYNCED: main (merge_type=fast-forward, upstream 351c2f4a038f)
+UP-TO-DATE: master (upstream 351c2f4a038f)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -614,5 +614,5 @@ Branches up-to-date: 87
 Branch conflicts: 11
 Branches skipped: 78
 Branches failed: 0
-Finished: 2026-11-14T22:26:16.391Z
+Finished: 2026-11-15T00:02:32.335Z
 ================================================================
