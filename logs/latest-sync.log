@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-15T06:00:44.370Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43683490225
+Started: 2026-11-15T06:34:00.261Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43686017113
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -14,7 +14,7 @@ Upstream: SuperMonster003/AutoJs6
 Default branch: master
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
-FAILED: master (HTTP 500 Unexpected end of JSON input)
+CONFLICT: master (diverged; manual resolution required)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -286,7 +286,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-SYNCED: dev (merge_type=fast-forward, upstream 836a1f8a5656)
+SYNCED: dev (merge_type=fast-forward, upstream 4a31db788ec3)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -304,7 +304,7 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream e5f642f1d19a)
+UP-TO-DATE: main (upstream e5f642f1d19a)
 UP-TO-DATE: master (upstream e5f642f1d19a)
 SKIP: dev (not present upstream)
 
@@ -314,7 +314,7 @@ Repository: zhaosiqi9/pebrel
 Upstream: Kuddev/pebrel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream c63ff393fc0f)
+UP-TO-DATE: main (upstream c63ff393fc0f)
 UP-TO-DATE: master (upstream c63ff393fc0f)
 SKIP: dev (not present upstream)
 
@@ -354,7 +354,7 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 2237f936f005)
+UP-TO-DATE: main (upstream 2237f936f005)
 UP-TO-DATE: master (upstream 2237f936f005)
 SKIP: dev (not present upstream)
 
@@ -444,7 +444,7 @@ Repository: zhaosiqi9/traework2api-panel
 Upstream: misakano7545/traework2api-panel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 07578aa96574)
+UP-TO-DATE: main (upstream 07578aa96574)
 UP-TO-DATE: master (upstream 07578aa96574)
 SKIP: dev (not present upstream)
 
@@ -584,7 +584,7 @@ Repository: zhaosiqi9/xsime
 Upstream: scholay-xsime/xsime
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream f83c66bddfec)
+UP-TO-DATE: main (upstream f83c66bddfec)
 UP-TO-DATE: master (upstream f83c66bddfec)
 SKIP: dev (not present upstream)
 
@@ -608,11 +608,11 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 6
+Branches synced: 1
 Branches created: 0
-Branches up-to-date: 83
-Branch conflicts: 10
+Branches up-to-date: 88
+Branch conflicts: 11
 Branches skipped: 78
-Branches failed: 1
-Finished: 2026-11-15T06:02:49.533Z
+Branches failed: 0
+Finished: 2026-11-15T06:35:36.915Z
 ================================================================
