@@ -1,16 +1,12 @@
 # 本 workflow 基于 fork-sync.yml 扩展：
 # - 除默认分支外，还同步 upstream 的 main/master/dev（以及 upstream 默认分支）
 # - 每次运行覆盖写入 logs/latest-sync.log 并提交回本仓库
-# - 每 6 小时定时执行一次，同时支持手动触发
+# - 仅支持手动触发（已取消定时任务）
 
 name: GitHub Fork Auto Sync (main/master/dev)
 
 on:
-  # 每6个小时执行一次；避开整点，降低 GitHub 定时延迟/丢弃的概率
-  schedule:
-    - cron: '17 */6 * * *'
-
-  # 支持手动触发
+  # 仅保留手动触发，不再定时执行
   workflow_dispatch:
 
 # GITHUB_TOKEN 只用于把同步日志提交回本仓库；
@@ -62,6 +58,9 @@ jobs:
             const LOG_FILE = 'logs/latest-sync.log';
             // fork 缺少上游分支时，从上游最新 commit 自动创建
             const AUTO_CREATE_MISSING_BRANCHES = true;
+            // GitHub API 瞬时故障重试：含首次调用共 3 次，退避 2s、4s
+            const RETRY_MAX_ATTEMPTS = 3;
+            const RETRY_BASE_DELAY_MS = 2000;
 
             // =====================================
             // 日志与工具函数
@@ -110,16 +109,75 @@ jobs:
             }
 
             /**
+             * 判断异常是否值得重试。
+             * 5xx / 429 与无 status 的连接层异常属于瞬时故障；
+             * 4xx（404/409/422 等）是确定性业务错误，重试无意义。
+             */
+            function isRetryableError(error) {
+              if (error && typeof error.status === 'number') {
+                return error.status >= 500 || error.status === 429;
+              }
+
+              return true;
+            }
+
+            /**
+             * 等待指定毫秒数。
+             * @param {number} ms 等待时长
+             */
+            function sleep(ms) {
+              return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+            /**
+             * 对 GitHub API 调用做有限次指数退避重试。
+             * 2026-11-15 的运行曾因 merge-upstream 返回 HTTP 500
+             * （响应 JSON 被截断）导致整轮同步失败，这里通过重试吸收此类抖动。
+             * @param {Function} operation 返回 Promise 的 API 调用
+             * @param {string} label 日志中标识调用的名称
+             * @returns {Promise<unknown>} operation 的返回值；重试耗尽后抛出最后一次异常
+             */
+            async function withRetry(operation, label) {
+              let lastError;
+
+              for (let attempt = 1; attempt <= RETRY_MAX_ATTEMPTS; attempt += 1) {
+                try {
+                  return await operation();
+                } catch (error) {
+                  lastError = error;
+
+                  // 业务错误或重试次数耗尽：原样抛出，交给上层分类处理
+                  if (!isRetryableError(error) || attempt === RETRY_MAX_ATTEMPTS) {
+                    throw error;
+                  }
+
+                  const delayMs = RETRY_BASE_DELAY_MS * 2 ** (attempt - 1);
+                  log(
+                    `RETRY: ${label} failed (HTTP ${httpStatus(error)} ${errorText(error)}); ` +
+                      `attempt ${attempt}/${RETRY_MAX_ATTEMPTS}, retrying in ${delayMs}ms`
+                  );
+                  await sleep(delayMs);
+                }
+              }
+
+              throw lastError;
+            }
+
+            /**
              * 查询分支；404 表示分支不存在，其余异常继续抛出。
              * 这样调用方可以区分“分支不存在”和“权限/网络错误”。
              */
             async function getBranchOrNull(owner, repo, branch) {
               try {
-                const { data } = await github.rest.repos.getBranch({
-                  owner,
-                  repo,
-                  branch
-                });
+                const { data } = await withRetry(
+                  () =>
+                    github.rest.repos.getBranch({
+                      owner,
+                      repo,
+                      branch
+                    }),
+                  `getBranch ${owner}/${repo}@${branch}`
+                );
                 return data;
               } catch (error) {
                 if (error.status === 404) return null;
@@ -168,12 +226,16 @@ jobs:
              */
             async function createMissingBranch(fork, branch, upstreamSha) {
               try {
-                await github.rest.git.createRef({
-                  owner: fork.owner.login,
-                  repo: fork.name,
-                  ref: `refs/heads/${branch}`,
-                  sha: upstreamSha
-                });
+                await withRetry(
+                  () =>
+                    github.rest.git.createRef({
+                      owner: fork.owner.login,
+                      repo: fork.name,
+                      ref: `refs/heads/${branch}`,
+                      sha: upstreamSha
+                    }),
+                  `createRef ${fork.owner.login}/${fork.name}@${branch}`
+                );
 
                 return {
                   outcome: 'created',
@@ -210,13 +272,17 @@ jobs:
              */
             async function fastForwardByRef(fork, branch, upstreamSha, originalError) {
               try {
-                await github.rest.git.updateRef({
-                  owner: fork.owner.login,
-                  repo: fork.name,
-                  ref: `heads/${branch}`,
-                  sha: upstreamSha,
-                  force: false
-                });
+                await withRetry(
+                  () =>
+                    github.rest.git.updateRef({
+                      owner: fork.owner.login,
+                      repo: fork.name,
+                      ref: `heads/${branch}`,
+                      sha: upstreamSha,
+                      force: false
+                    }),
+                  `updateRef ${fork.owner.login}/${fork.name}@${branch}`
+                );
 
                 return {
                   outcome: 'synced',
@@ -246,11 +312,15 @@ jobs:
              */
             async function mergeExistingBranch(fork, branch, upstreamSha) {
               try {
-                const { data } = await github.rest.repos.mergeUpstream({
-                  owner: fork.owner.login,
-                  repo: fork.name,
-                  branch
-                });
+                const { data } = await withRetry(
+                  () =>
+                    github.rest.repos.mergeUpstream({
+                      owner: fork.owner.login,
+                      repo: fork.name,
+                      branch
+                    }),
+                  `mergeUpstream ${fork.owner.login}/${fork.name}@${branch}`
+                );
 
                 const mergeType = data.merge_type || 'unknown';
 
@@ -417,10 +487,14 @@ jobs:
              */
             async function fetchForkDetail(repo) {
               try {
-                const { data } = await github.rest.repos.get({
-                  owner: repo.owner.login,
-                  repo: repo.name
-                });
+                const { data } = await withRetry(
+                  () =>
+                    github.rest.repos.get({
+                      owner: repo.owner.login,
+                      repo: repo.name
+                    }),
+                  `getRepo ${repo.full_name}`
+                );
                 return data;
               } catch (error) {
                 if (error.status === 404) {
@@ -575,7 +649,10 @@ jobs:
              */
             async function resolveOwner() {
               try {
-                const { data } = await github.rest.users.getAuthenticated();
+                const { data } = await withRetry(
+                  () => github.rest.users.getAuthenticated(),
+                  'getAuthenticated'
+                );
                 return data.login;
               } catch (error) {
                 const fallback = context.repo.owner;
@@ -590,12 +667,13 @@ jobs:
              * 分页获取账号下的全部仓库，并筛选出 fork。
              */
             async function discoverForks(owner) {
-              const repos = await github.paginate(
-                github.rest.repos.listForAuthenticatedUser,
-                {
-                  type: 'owner',
-                  per_page: 100
-                }
+              const repos = await withRetry(
+                () =>
+                  github.paginate(github.rest.repos.listForAuthenticatedUser, {
+                    type: 'owner',
+                    per_page: 100
+                  }),
+                'listForAuthenticatedUser'
               );
 
               stats.discovered = repos.length;
