@@ -1,21 +1,11 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-16T00:00:46.529Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43777849977
+Started: 2026-11-16T02:00:12.381Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43789488004
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
 Discovered repositories: 74
 Forks found: 59
-
-================================================================
-Repository: zhaosiqi9/AutoJs6
-================================================================
-Upstream: SuperMonster003/AutoJs6
-Default branch: master
-Candidate branches: main, master, dev
-SKIP: main (not present upstream)
-CONFLICT: master (diverged; manual resolution required)
-SKIP: dev (not present upstream)
 
 ================================================================
 Repository: zhaosiqi9/bb-browser
@@ -174,7 +164,7 @@ Repository: zhaosiqi9/hello-algo
 Upstream: krahets/hello-algo
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream ded7ddc63514)
+UP-TO-DATE: main (upstream ded7ddc63514)
 UP-TO-DATE: master (upstream ded7ddc63514)
 SKIP: dev (not present upstream)
 
@@ -286,7 +276,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-SYNCED: dev (merge_type=fast-forward, upstream e61752b04e87)
+UP-TO-DATE: dev (upstream e61752b04e87)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -304,8 +294,8 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 10ddb4aa8927)
-UP-TO-DATE: master (upstream 10ddb4aa8927)
+SYNCED: main (merge_type=fast-forward, upstream efa4fb3b436c)
+UP-TO-DATE: master (upstream efa4fb3b436c)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -314,8 +304,8 @@ Repository: zhaosiqi9/pebrel
 Upstream: Kuddev/pebrel
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream c63ff393fc0f)
-UP-TO-DATE: master (upstream c63ff393fc0f)
+SYNCED: main (merge_type=fast-forward, upstream 4312c158bd56)
+UP-TO-DATE: master (upstream 4312c158bd56)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -354,8 +344,8 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 6eb42a8d8dc3)
-UP-TO-DATE: master (upstream 6eb42a8d8dc3)
+SYNCED: main (merge_type=fast-forward, upstream 162097b95add)
+UP-TO-DATE: master (upstream 162097b95add)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -504,8 +494,8 @@ Repository: zhaosiqi9/Windows-MCP
 Upstream: CursorTouch/Windows-MCP
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream 6e57e44b84b8)
-UP-TO-DATE: master (upstream 6e57e44b84b8)
+SYNCED: main (merge_type=fast-forward, upstream 02950fa1331f)
+UP-TO-DATE: master (upstream 02950fa1331f)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -544,8 +534,18 @@ Repository: zhaosiqi9/workbuddy2api-panel2
 Upstream: misakano7545/workbuddy2api-panel
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream 89cdfe7110a6)
+SYNCED: main (merge_type=merge, upstream 74456c87f2ea)
 CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
+SKIP: dev (not present upstream)
+
+================================================================
+Repository: zhaosiqi9/workbuddy2api-trae-qoder-minimax-panel
+================================================================
+Upstream: xu20060420fan-cell/workbuddy2api-trae-qoder-minimax-panel
+Default branch: main
+Candidate branches: main, master, dev
+UP-TO-DATE: main (upstream 6e453f3f7991)
+UP-TO-DATE: master (upstream 6e453f3f7991)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -608,11 +608,11 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 4
+Branches synced: 5
 Branches created: 0
-Branches up-to-date: 85
-Branch conflicts: 11
-Branches skipped: 78
+Branches up-to-date: 86
+Branch conflicts: 10
+Branches skipped: 77
 Branches failed: 0
-Finished: 2026-11-16T00:02:30.693Z
+Finished: 2026-11-16T02:01:55.217Z
 ================================================================
