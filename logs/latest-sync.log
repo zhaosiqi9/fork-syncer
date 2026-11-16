@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-16T12:00:14.283Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43862627205
+Started: 2026-11-16T13:00:15.744Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43871646308
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -174,7 +174,7 @@ Repository: zhaosiqi9/jailbreaks
 Upstream: togg53192-cmd/jailbreaks
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 653bd68c33ef)
+UP-TO-DATE: main (upstream 653bd68c33ef)
 UP-TO-DATE: master (upstream 653bd68c33ef)
 SKIP: dev (not present upstream)
 
@@ -276,7 +276,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-SYNCED: dev (merge_type=fast-forward, upstream 7bc6f4333351)
+SYNCED: dev (merge_type=fast-forward, upstream 699b6c3d4e95)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -284,8 +284,8 @@ Repository: zhaosiqi9/open-design
 Upstream: nexu-io/open-design
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream aa9a369dcf4d)
-UP-TO-DATE: master (upstream aa9a369dcf4d)
+SYNCED: main (merge_type=fast-forward, upstream 0701042f3d29)
+UP-TO-DATE: master (upstream 0701042f3d29)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -294,8 +294,8 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream cbac930a6f49)
-UP-TO-DATE: master (upstream cbac930a6f49)
+SYNCED: main (merge_type=fast-forward, upstream ac3c564249d5)
+UP-TO-DATE: master (upstream ac3c564249d5)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -304,8 +304,8 @@ Repository: zhaosiqi9/pebrel
 Upstream: Kuddev/pebrel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 1112256f883f)
-UP-TO-DATE: master (upstream 1112256f883f)
+SYNCED: main (merge_type=fast-forward, upstream d13b3753b3dc)
+UP-TO-DATE: master (upstream d13b3753b3dc)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -344,7 +344,7 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 552d1c7108b9)
+UP-TO-DATE: main (upstream 552d1c7108b9)
 UP-TO-DATE: master (upstream 552d1c7108b9)
 SKIP: dev (not present upstream)
 
@@ -505,6 +505,7 @@ Upstream: ckldy/workbuddy2api
 Default branch: master
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
+RETRY: mergeUpstream zhaosiqi9/workbuddy2api@master failed (HTTP 500 Unexpected end of JSON input); attempt 1/3, retrying in 2000ms
 CONFLICT: master (diverged; manual resolution required)
 SKIP: dev (not present upstream)
 
@@ -584,7 +585,7 @@ Repository: zhaosiqi9/xsime
 Upstream: scholay-xsime/xsime
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 1883f0a0881e)
+UP-TO-DATE: main (upstream 1883f0a0881e)
 UP-TO-DATE: master (upstream 1883f0a0881e)
 SKIP: dev (not present upstream)
 
@@ -608,9 +609,9 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 7
+Branches synced: 4
 Branches created: 0
-Branches up-to-date: 84
+Branches up-to-date: 87
 Branch conflicts: 10
   - zhaosiqi9/crmeb_java@master (diverged; manual resolution required)
   - zhaosiqi9/dsh-free-search@master (diverged; manual resolution required)
@@ -624,5 +625,5 @@ Branch conflicts: 10
   - zhaosiqi9/workbuddy2api-panel2@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 Branches skipped: 77
 Branches failed: 0
-Finished: 2026-11-16T12:02:15.448Z
+Finished: 2026-11-16T13:03:42.231Z
 ================================================================
