@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-16T04:00:12.160Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43801400814
+Started: 2026-11-16T05:00:12.568Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43807416405
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -136,7 +136,7 @@ Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream bacaece43900)
 UP-TO-DATE: master (upstream bacaece43900)
-SYNCED: dev (merge_type=fast-forward, upstream 55080e00c0ab)
+UP-TO-DATE: dev (upstream 55080e00c0ab)
 
 ================================================================
 Repository: zhaosiqi9/fork-sync
@@ -154,7 +154,7 @@ Repository: zhaosiqi9/halo
 Upstream: halo-dev/halo
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 088a452feab2)
+SYNCED: main (merge_type=fast-forward, upstream 8bf4566224d3)
 CONFLICT: master (diverged; manual resolution required)
 SKIP: dev (not present upstream)
 
@@ -294,8 +294,8 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 2878eb8d870f)
-UP-TO-DATE: master (upstream 2878eb8d870f)
+SYNCED: main (merge_type=fast-forward, upstream 0360690c6a8a)
+UP-TO-DATE: master (upstream 0360690c6a8a)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -304,8 +304,8 @@ Repository: zhaosiqi9/pebrel
 Upstream: Kuddev/pebrel
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream b4e3497caf39)
-UP-TO-DATE: master (upstream b4e3497caf39)
+SYNCED: main (merge_type=fast-forward, upstream 1e4b7ffc0604)
+UP-TO-DATE: master (upstream 1e4b7ffc0604)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -344,8 +344,8 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream ec1cf3a9bd19)
-UP-TO-DATE: master (upstream ec1cf3a9bd19)
+SYNCED: main (merge_type=fast-forward, upstream a8cd584ccf90)
+UP-TO-DATE: master (upstream a8cd584ccf90)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -624,5 +624,5 @@ Branch conflicts: 10
   - zhaosiqi9/workbuddy2api-panel2@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 Branches skipped: 77
 Branches failed: 0
-Finished: 2026-11-16T04:01:45.969Z
+Finished: 2026-11-16T05:02:00.681Z
 ================================================================
