@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-16T03:00:11.073Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43795472032
+Started: 2026-11-16T03:24:47.916Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43798022758
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -294,8 +294,8 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 22aa1edd61e3)
-UP-TO-DATE: master (upstream 22aa1edd61e3)
+SYNCED: main (merge_type=fast-forward, upstream 92dd70f08b55)
+UP-TO-DATE: master (upstream 92dd70f08b55)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -304,7 +304,7 @@ Repository: zhaosiqi9/pebrel
 Upstream: Kuddev/pebrel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream b4e3497caf39)
+UP-TO-DATE: main (upstream b4e3497caf39)
 UP-TO-DATE: master (upstream b4e3497caf39)
 SKIP: dev (not present upstream)
 
@@ -344,8 +344,8 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 0f6b330cb632)
-UP-TO-DATE: master (upstream 0f6b330cb632)
+SYNCED: main (merge_type=fast-forward, upstream 5d283a6e4ac6)
+UP-TO-DATE: master (upstream 5d283a6e4ac6)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -608,11 +608,21 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 3
+Branches synced: 2
 Branches created: 0
-Branches up-to-date: 88
+Branches up-to-date: 89
 Branch conflicts: 10
+  - zhaosiqi9/crmeb_java@master (diverged; manual resolution required)
+  - zhaosiqi9/dsh-free-search@master (diverged; manual resolution required)
+  - zhaosiqi9/edgetunnel@main (diverged; manual resolution required)
+  - zhaosiqi9/edgetunnel@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
+  - zhaosiqi9/halo@master (diverged; manual resolution required)
+  - zhaosiqi9/warm-flow@master (diverged; manual resolution required)
+  - zhaosiqi9/workbuddy2api@master (diverged; manual resolution required)
+  - zhaosiqi9/workbuddy2api-panel@main (diverged; manual resolution required)
+  - zhaosiqi9/workbuddy2api-panel@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
+  - zhaosiqi9/workbuddy2api-panel2@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 Branches skipped: 77
 Branches failed: 0
-Finished: 2026-11-16T03:01:48.806Z
+Finished: 2026-11-16T03:26:19.236Z
 ================================================================
