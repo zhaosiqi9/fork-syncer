@@ -216,6 +216,10 @@ jobs:
               failed: 0
             };
 
+            // 冲突分支明细：与 stats.conflicts 同步维护（前者计数，后者明细），
+            // 供 SUMMARY 和 Actions Job Summary 列出需要人工处理的具体分支。
+            const conflictDetails = [];
+
             // =====================================
             // 单分支同步
             // =====================================
@@ -446,8 +450,11 @@ jobs:
 
             /**
              * 根据分支结果更新统计并输出日志。
+             * @param {string} repoFullName fork 的完整名称（owner/repo）
+             * @param {string} branch 分支名
+             * @param {{outcome: string, detail: string}} result 分支同步结果
              */
-            function reportBranchResult(branch, result) {
+            function reportBranchResult(repoFullName, branch, result) {
               switch (result.outcome) {
                 case 'synced':
                   stats.synced += 1;
@@ -463,6 +470,12 @@ jobs:
                   break;
                 case 'conflict':
                   stats.conflicts += 1;
+                  // 记录明细，SUMMARY 阶段统一列出，避免冲突分散在长日志中难以汇总
+                  conflictDetails.push({
+                    repo: repoFullName,
+                    branch,
+                    detail: result.detail
+                  });
                   log(`CONFLICT: ${branch} (${result.detail})`);
                   break;
                 case 'skipped':
@@ -557,7 +570,7 @@ jobs:
 
               for (const branch of candidates) {
                 const result = await safeSyncBranch(detail, upstream, branch);
-                reportBranchResult(branch, result);
+                reportBranchResult(detail.full_name, branch, result);
               }
             }
 
@@ -565,8 +578,12 @@ jobs:
             // 汇总
             // =====================================
 
+            /**
+             * 构建 Actions 运行摘要。
+             * 冲突分支单独成节，便于在摘要页面直接定位并处理，无需翻阅完整日志。
+             */
             function buildMarkdownSummary() {
-              return [
+              const lines = [
                 '## GitHub Fork Sync (main/master/dev)',
                 '',
                 `- Discovered repositories: **${stats.discovered}**`,
@@ -584,7 +601,19 @@ jobs:
                 '',
                 `Repository failures: **${stats.repoFailed}**`,
                 ''
-              ].join('\n');
+              ];
+
+              if (conflictDetails.length > 0) {
+                lines.push('### Branch conflicts', '');
+                for (const conflict of conflictDetails) {
+                  lines.push(
+                    `- \`${conflict.repo}@${conflict.branch}\` — ${conflict.detail}`
+                  );
+                }
+                lines.push('');
+              }
+
+              return lines.join('\n');
             }
 
             function logSummary() {
@@ -603,6 +632,10 @@ jobs:
               log(`Branches created: ${stats.created}`);
               log(`Branches up-to-date: ${stats.upToDate}`);
               log(`Branch conflicts: ${stats.conflicts}`);
+              // 逐条列出冲突仓库与分支，方便直接照单处理
+              for (const conflict of conflictDetails) {
+                log(`  - ${conflict.repo}@${conflict.branch} (${conflict.detail})`);
+              }
               log(`Branches skipped: ${stats.branchSkipped}`);
               log(`Branches failed: ${stats.failed}`);
               log(`Finished: ${new Date().toISOString()}`);
