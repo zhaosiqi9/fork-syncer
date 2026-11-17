@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-17T00:00:13.028Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43983993334
+Started: 2026-11-17T01:00:12.610Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/43992113740
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -294,8 +294,8 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 64d5618cc7d9)
-UP-TO-DATE: master (upstream 64d5618cc7d9)
+SYNCED: main (merge_type=fast-forward, upstream 41bae970e017)
+UP-TO-DATE: master (upstream 41bae970e017)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -534,7 +534,7 @@ Repository: zhaosiqi9/workbuddy2api-panel2
 Upstream: misakano7545/workbuddy2api-panel
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream 06a401ed7794)
+SYNCED: main (merge_type=merge, upstream 27b7458f7251)
 CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
@@ -608,9 +608,9 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 1
+Branches synced: 2
 Branches created: 0
-Branches up-to-date: 90
+Branches up-to-date: 89
 Branch conflicts: 10
   - zhaosiqi9/crmeb_java@master (diverged; manual resolution required)
   - zhaosiqi9/dsh-free-search@master (diverged; manual resolution required)
@@ -624,5 +624,5 @@ Branch conflicts: 10
   - zhaosiqi9/workbuddy2api-panel2@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 Branches skipped: 77
 Branches failed: 0
-Finished: 2026-11-17T00:02:05.353Z
+Finished: 2026-11-17T01:01:47.685Z
 ================================================================
