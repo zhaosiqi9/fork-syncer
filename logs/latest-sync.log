@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-18T11:00:14.280Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/44290604781
+Started: 2026-11-18T12:00:14.995Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/44299750635
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -156,7 +156,7 @@ Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream f499162d1b91)
 UP-TO-DATE: master (upstream f499162d1b91)
-SYNCED: dev (merge_type=fast-forward, upstream bbd8769e66a4)
+UP-TO-DATE: dev (upstream bbd8769e66a4)
 
 ================================================================
 Repository: zhaosiqi9/fork-sync
@@ -174,7 +174,7 @@ Repository: zhaosiqi9/halo
 Upstream: halo-dev/halo
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 42c75c982284)
+UP-TO-DATE: main (upstream 42c75c982284)
 CONFLICT: master (diverged; manual resolution required)
 SKIP: dev (not present upstream)
 
@@ -296,7 +296,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-SYNCED: dev (merge_type=fast-forward, upstream 9b94b6f3dd98)
+SYNCED: dev (merge_type=fast-forward, upstream 544c0a435135)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -314,8 +314,8 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 6efece99a4d4)
-UP-TO-DATE: master (upstream 6efece99a4d4)
+SYNCED: main (merge_type=fast-forward, upstream a30103d410be)
+UP-TO-DATE: master (upstream a30103d410be)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -628,9 +628,9 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 4
+Branches synced: 2
 Branches created: 0
-Branches up-to-date: 91
+Branches up-to-date: 93
 Branch conflicts: 10
   - zhaosiqi9/crmeb_java@master (diverged; manual resolution required)
   - zhaosiqi9/dsh-free-search@master (diverged; manual resolution required)
@@ -644,5 +644,5 @@ Branch conflicts: 10
   - zhaosiqi9/workbuddy2api-panel2@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 Branches skipped: 79
 Branches failed: 0
-Finished: 2026-11-18T11:02:13.116Z
+Finished: 2026-11-18T12:02:20.324Z
 ================================================================
