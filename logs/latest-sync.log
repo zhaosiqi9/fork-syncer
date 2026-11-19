@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-19T12:00:13.667Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/44519799275
+Started: 2026-11-19T13:00:12.153Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/44529121891
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -296,7 +296,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-SYNCED: dev (merge_type=fast-forward, upstream d84a3ef562ba)
+SYNCED: dev (merge_type=fast-forward, upstream 10714dddfa3d)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -314,8 +314,8 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 6c2ae13387a0)
-UP-TO-DATE: master (upstream 6c2ae13387a0)
+SYNCED: main (merge_type=fast-forward, upstream b3f8cec272f8)
+UP-TO-DATE: master (upstream b3f8cec272f8)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -364,8 +364,8 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream fa84be9f3a3c)
-UP-TO-DATE: master (upstream fa84be9f3a3c)
+SYNCED: main (merge_type=fast-forward, upstream 15150b017a10)
+UP-TO-DATE: master (upstream 15150b017a10)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -644,5 +644,5 @@ Branch conflicts: 10
   - zhaosiqi9/workbuddy2api-panel2@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 Branches skipped: 79
 Branches failed: 0
-Finished: 2026-11-19T12:02:06.893Z
+Finished: 2026-11-19T13:02:14.883Z
 ================================================================
