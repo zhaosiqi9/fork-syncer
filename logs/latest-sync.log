@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-19T10:00:14.471Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/44501523564
+Started: 2026-11-19T11:00:12.592Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/44510782227
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -174,7 +174,7 @@ Repository: zhaosiqi9/halo
 Upstream: halo-dev/halo
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream d9a27b78921b)
+SYNCED: main (merge_type=fast-forward, upstream a2ab7db26574)
 CONFLICT: master (diverged; manual resolution required)
 SKIP: dev (not present upstream)
 
@@ -296,7 +296,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-UP-TO-DATE: dev (upstream c9c4cfb4bc5b)
+SYNCED: dev (merge_type=fast-forward, upstream d03b389029f0)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -314,8 +314,8 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 3eaaa71ae102)
-UP-TO-DATE: master (upstream 3eaaa71ae102)
+SYNCED: main (merge_type=fast-forward, upstream a0a51a63cb05)
+UP-TO-DATE: master (upstream a0a51a63cb05)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -324,7 +324,7 @@ Repository: zhaosiqi9/pebrel
 Upstream: Kuddev/pebrel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream e74057251c97)
+UP-TO-DATE: main (upstream e74057251c97)
 UP-TO-DATE: master (upstream e74057251c97)
 SKIP: dev (not present upstream)
 
@@ -644,5 +644,5 @@ Branch conflicts: 10
   - zhaosiqi9/workbuddy2api-panel2@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 Branches skipped: 79
 Branches failed: 0
-Finished: 2026-11-19T10:02:13.048Z
+Finished: 2026-11-19T11:02:08.425Z
 ================================================================
