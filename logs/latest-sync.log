@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-19T04:00:12.168Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/44455251819
+Started: 2026-11-19T05:00:11.988Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/44462094322
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -296,7 +296,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-SYNCED: dev (merge_type=fast-forward, upstream abfb5be79638)
+SYNCED: dev (merge_type=fast-forward, upstream fd7c18a9deb3)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -314,8 +314,8 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream ea8351d9f622)
-UP-TO-DATE: master (upstream ea8351d9f622)
+SYNCED: main (merge_type=fast-forward, upstream 8a56c204f425)
+UP-TO-DATE: master (upstream 8a56c204f425)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -364,8 +364,8 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream fe784e7f0361)
-UP-TO-DATE: master (upstream fe784e7f0361)
+SYNCED: main (merge_type=fast-forward, upstream 4e4e99864ecc)
+UP-TO-DATE: master (upstream 4e4e99864ecc)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -385,7 +385,7 @@ Upstream: DetachHead/rebased
 Default branch: master
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
-UP-TO-DATE: master (upstream 71c3705eacfb)
+SYNCED: master (merge_type=fast-forward, upstream 3e3281b1f753)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -464,7 +464,7 @@ Repository: zhaosiqi9/turb-gpt-free-register
 Upstream: myfanhua/turb-gpt-free-register
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 96795bce9d4f)
+UP-TO-DATE: main (upstream 96795bce9d4f)
 UP-TO-DATE: master (upstream 96795bce9d4f)
 SKIP: dev (not present upstream)
 
@@ -644,5 +644,5 @@ Branch conflicts: 10
   - zhaosiqi9/workbuddy2api-panel2@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 Branches skipped: 79
 Branches failed: 0
-Finished: 2026-11-19T04:02:15.818Z
+Finished: 2026-11-19T05:02:02.196Z
 ================================================================
