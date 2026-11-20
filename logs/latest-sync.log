@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-20T08:00:12.992Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/44699086201
+Started: 2026-11-20T09:00:12.681Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/44706993974
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -64,9 +64,9 @@ Repository: zhaosiqi9/DeepTutor
 Upstream: HKUDS/DeepTutor
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 64a75bfeb928)
-UP-TO-DATE: master (upstream 64a75bfeb928)
-UP-TO-DATE: dev (upstream 66571c79dba1)
+SYNCED: main (merge_type=fast-forward, upstream d697b5af77ce)
+UP-TO-DATE: master (upstream d697b5af77ce)
+SYNCED: dev (merge_type=fast-forward, upstream 080a33da871c)
 
 ================================================================
 Repository: zhaosiqi9/DiPlay
@@ -166,7 +166,7 @@ Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream f499162d1b91)
 UP-TO-DATE: master (upstream f499162d1b91)
-UP-TO-DATE: dev (upstream 7f27af3edbcc)
+SYNCED: dev (merge_type=fast-forward, upstream 08571259d973)
 
 ================================================================
 Repository: zhaosiqi9/fork-sync
@@ -184,7 +184,7 @@ Repository: zhaosiqi9/halo
 Upstream: halo-dev/halo
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream d7c97661d600)
+SYNCED: main (merge_type=fast-forward, upstream 93fd3f2b010f)
 CONFLICT: master (diverged; manual resolution required)
 SKIP: dev (not present upstream)
 
@@ -306,7 +306,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-SYNCED: dev (merge_type=fast-forward, upstream 8ed8b4ccdc41)
+SYNCED: dev (merge_type=fast-forward, upstream 8b75b271f2ca)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -324,8 +324,8 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 266bd35a3d5b)
-UP-TO-DATE: master (upstream 266bd35a3d5b)
+SYNCED: main (merge_type=fast-forward, upstream e20e7b04bcef)
+UP-TO-DATE: master (upstream e20e7b04bcef)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -334,8 +334,8 @@ Repository: zhaosiqi9/pebrel
 Upstream: Kuddev/pebrel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream d4a585732df3)
-UP-TO-DATE: master (upstream d4a585732df3)
+SYNCED: main (merge_type=fast-forward, upstream 86c1e9dd0ad3)
+UP-TO-DATE: master (upstream 86c1e9dd0ad3)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -564,7 +564,7 @@ Repository: zhaosiqi9/workbuddy2api-panel2
 Upstream: misakano7545/workbuddy2api-panel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=merge, upstream 08cb9351a22d)
+SYNCED: main (merge_type=merge, upstream be99749dbc58)
 CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
@@ -624,7 +624,7 @@ Repository: zhaosiqi9/ZeroLaunch-rs
 Upstream: ghost-him/ZeroLaunch-rs
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 32e79e68d346)
+UP-TO-DATE: main (upstream 32e79e68d346)
 UP-TO-DATE: master (upstream 32e79e68d346)
 SKIP: dev (not present upstream)
 
@@ -638,9 +638,9 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 7
+Branches synced: 8
 Branches created: 0
-Branches up-to-date: 90
+Branches up-to-date: 89
 Branch conflicts: 10
   - zhaosiqi9/crmeb_java@master (diverged; manual resolution required)
   - zhaosiqi9/dsh-free-search@master (diverged; manual resolution required)
@@ -654,5 +654,5 @@ Branch conflicts: 10
   - zhaosiqi9/workbuddy2api-panel2@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 Branches skipped: 80
 Branches failed: 0
-Finished: 2026-11-20T08:02:03.509Z
+Finished: 2026-11-20T09:02:10.885Z
 ================================================================
