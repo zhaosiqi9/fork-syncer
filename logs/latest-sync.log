@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-21T22:00:13.349Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/44954406088
+Started: 2026-11-21T23:00:13.717Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/44959567099
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -194,7 +194,7 @@ Repository: zhaosiqi9/halo
 Upstream: halo-dev/halo
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream a7d77d414c8e)
+UP-TO-DATE: main (upstream a7d77d414c8e)
 CONFLICT: master (diverged; manual resolution required)
 SKIP: dev (not present upstream)
 
@@ -316,7 +316,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-SYNCED: dev (merge_type=fast-forward, upstream e9198c7964dc)
+UP-TO-DATE: dev (upstream e9198c7964dc)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -334,7 +334,7 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=merge, upstream 97ffd9aae99b)
+SYNCED: main (merge_type=merge, upstream b30b30311f3f)
 CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
@@ -354,8 +354,8 @@ Repository: zhaosiqi9/ponytail
 Upstream: DietrichGebert/ponytail
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream 96608e078b2d)
-UP-TO-DATE: master (upstream 96608e078b2d)
+SYNCED: main (merge_type=fast-forward, upstream dec89d9040ad)
+UP-TO-DATE: master (upstream dec89d9040ad)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -384,8 +384,8 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 7b3fb897c086)
-UP-TO-DATE: master (upstream 7b3fb897c086)
+SYNCED: main (merge_type=fast-forward, upstream cfa04985c210)
+UP-TO-DATE: master (upstream cfa04985c210)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -514,8 +514,8 @@ Repository: zhaosiqi9/webrtc
 Upstream: pion/webrtc
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream c9317965be96)
-SYNCED: master (merge_type=fast-forward, upstream c9317965be96)
+UP-TO-DATE: main (upstream c9317965be96)
+UP-TO-DATE: master (upstream c9317965be96)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -525,7 +525,7 @@ Upstream: ruanyf/weekly
 Default branch: master
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
-SYNCED: master (merge_type=fast-forward, upstream cf850c2f66a0)
+UP-TO-DATE: master (upstream cf850c2f66a0)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -574,7 +574,7 @@ Repository: zhaosiqi9/workbuddy2api-panel2
 Upstream: misakano7545/workbuddy2api-panel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=merge, upstream e2d0eb6a4039)
+UP-TO-DATE: main (upstream e2d0eb6a4039)
 CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
@@ -648,9 +648,9 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 8
+Branches synced: 3
 Branches created: 0
-Branches up-to-date: 90
+Branches up-to-date: 95
 Branch conflicts: 11
   - zhaosiqi9/crmeb_java@master (diverged; manual resolution required)
   - zhaosiqi9/dsh-free-search@master (diverged; manual resolution required)
@@ -665,5 +665,5 @@ Branch conflicts: 11
   - zhaosiqi9/workbuddy2api-panel2@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 Branches skipped: 81
 Branches failed: 0
-Finished: 2026-11-21T22:02:17.218Z
+Finished: 2026-11-21T23:02:01.401Z
 ================================================================
