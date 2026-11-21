@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-21T03:00:11.848Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/44858824559
+Started: 2026-11-21T04:00:12.973Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/44863888267
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -194,7 +194,7 @@ Repository: zhaosiqi9/halo
 Upstream: halo-dev/halo
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream f2bacb1ca099)
+SYNCED: main (merge_type=fast-forward, upstream ea1dc6ef2e54)
 CONFLICT: master (diverged; manual resolution required)
 SKIP: dev (not present upstream)
 
@@ -316,7 +316,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 1b6b9d0d6c0d)
-SYNCED: dev (merge_type=fast-forward, upstream 4a8c752c6e3b)
+UP-TO-DATE: dev (upstream 4a8c752c6e3b)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -334,7 +334,7 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=merge, upstream 732cfd6002f2)
+SYNCED: main (merge_type=merge, upstream 31ca9daa61ab)
 CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
@@ -344,8 +344,8 @@ Repository: zhaosiqi9/pebrel
 Upstream: Kuddev/pebrel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream b72eff65e2e3)
-UP-TO-DATE: master (upstream b72eff65e2e3)
+SYNCED: main (merge_type=fast-forward, upstream ed9b23313408)
+UP-TO-DATE: master (upstream ed9b23313408)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -374,8 +374,8 @@ Repository: zhaosiqi9/qoder2api-hub
 Upstream: shuishuipingan/qoder2api-hub
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream 25d05944cdc9)
-UP-TO-DATE: master (upstream 25d05944cdc9)
+SYNCED: main (merge_type=fast-forward, upstream 431c3f0113a6)
+UP-TO-DATE: master (upstream 431c3f0113a6)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -384,8 +384,8 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 29bf76bfc37d)
-UP-TO-DATE: master (upstream 29bf76bfc37d)
+SYNCED: main (merge_type=fast-forward, upstream efe2da79a86e)
+UP-TO-DATE: master (upstream efe2da79a86e)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -574,7 +574,7 @@ Repository: zhaosiqi9/workbuddy2api-panel2
 Upstream: misakano7545/workbuddy2api-panel
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=merge, upstream d629a8ca9d0e)
+UP-TO-DATE: main (upstream d629a8ca9d0e)
 CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
@@ -665,5 +665,5 @@ Branch conflicts: 11
   - zhaosiqi9/workbuddy2api-panel2@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 Branches skipped: 81
 Branches failed: 0
-Finished: 2026-11-21T03:02:11.262Z
+Finished: 2026-11-21T04:01:50.533Z
 ================================================================
