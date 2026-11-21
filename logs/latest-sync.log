@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-21T11:00:12.723Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/44896954831
+Started: 2026-11-21T12:00:19.613Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/44901718737
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -334,7 +334,7 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=merge, upstream 2c161812a0f1)
+SYNCED: main (merge_type=merge, upstream 50340219ace8)
 CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
@@ -384,8 +384,8 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream f63915d6f2bc)
-UP-TO-DATE: master (upstream f63915d6f2bc)
+SYNCED: main (merge_type=fast-forward, upstream ccfdd6157282)
+UP-TO-DATE: master (upstream ccfdd6157282)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -665,5 +665,5 @@ Branch conflicts: 11
   - zhaosiqi9/workbuddy2api-panel2@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 Branches skipped: 81
 Branches failed: 0
-Finished: 2026-11-21T11:02:09.954Z
+Finished: 2026-11-21T12:02:03.806Z
 ================================================================
