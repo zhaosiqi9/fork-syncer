@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-26T04:00:18.049Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/45752395592
+Started: 2026-11-26T05:00:11.313Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/45758702353
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -174,9 +174,9 @@ Repository: zhaosiqi9/ego-lite
 Upstream: citrolabs/ego-lite
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 56589ea8b98f)
+UP-TO-DATE: main (upstream 56589ea8b98f)
 UP-TO-DATE: master (upstream 56589ea8b98f)
-UP-TO-DATE: dev (upstream 654eacc5be08)
+SYNCED: dev (merge_type=fast-forward, upstream 2060483e9b51)
 
 ================================================================
 Repository: zhaosiqi9/fork-sync
@@ -194,7 +194,7 @@ Repository: zhaosiqi9/halo
 Upstream: halo-dev/halo
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 3c2e5e36dcd5)
+SYNCED: main (merge_type=fast-forward, upstream d85962551720)
 CONFLICT: master (diverged; manual resolution required)
 SKIP: dev (not present upstream)
 
@@ -334,7 +334,7 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream 91da88d09d34)
+SYNCED: main (merge_type=merge, upstream fe7fa7d50520)
 CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
@@ -374,8 +374,8 @@ Repository: zhaosiqi9/qoder2api-hub
 Upstream: shuishuipingan/qoder2api-hub
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 9308852c0210)
-UP-TO-DATE: master (upstream 9308852c0210)
+SYNCED: main (merge_type=fast-forward, upstream 36fa92959268)
+UP-TO-DATE: master (upstream 36fa92959268)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -384,8 +384,8 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 9edc95c51257)
-UP-TO-DATE: master (upstream 9edc95c51257)
+SYNCED: main (merge_type=fast-forward, upstream d63982890e70)
+UP-TO-DATE: master (upstream d63982890e70)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -648,9 +648,9 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 4
+Branches synced: 5
 Branches created: 0
-Branches up-to-date: 94
+Branches up-to-date: 93
 Branch conflicts: 11
   - zhaosiqi9/crmeb_java@master (diverged; manual resolution required)
   - zhaosiqi9/dsh-free-search@master (diverged; manual resolution required)
@@ -665,5 +665,5 @@ Branch conflicts: 11
   - zhaosiqi9/workbuddy2api-panel2@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 Branches skipped: 81
 Branches failed: 0
-Finished: 2026-11-26T04:02:03.843Z
+Finished: 2026-11-26T05:02:01.213Z
 ================================================================
