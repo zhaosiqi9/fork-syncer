@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-27T13:00:12.325Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/46003309657
+Started: 2026-11-27T22:00:13.748Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/46073849092
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -76,7 +76,7 @@ Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream c929888e783b)
 UP-TO-DATE: master (upstream c929888e783b)
-UP-TO-DATE: dev (upstream 22399efcc27a)
+SYNCED: dev (merge_type=fast-forward, upstream 76e3c0a4d46d)
 
 ================================================================
 Repository: zhaosiqi9/DiPlay
@@ -316,7 +316,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 8dbccd12842f)
-UP-TO-DATE: dev (upstream 08eb72c819bd)
+SYNCED: dev (merge_type=fast-forward, upstream 7fe0a2c07967)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -334,7 +334,7 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=merge, upstream 91aba61c9701)
+SYNCED: main (merge_type=merge, upstream cc5d9d95e4f9)
 CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
@@ -384,8 +384,8 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream dc12e5768b57)
-UP-TO-DATE: master (upstream dc12e5768b57)
+SYNCED: main (merge_type=fast-forward, upstream 1adba0f4172f)
+UP-TO-DATE: master (upstream 1adba0f4172f)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -624,7 +624,7 @@ Repository: zhaosiqi9/xsime
 Upstream: scholay-xsime/xsime
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream ff18a457b8cc)
+UP-TO-DATE: main (upstream ff18a457b8cc)
 UP-TO-DATE: master (upstream ff18a457b8cc)
 SKIP: dev (not present upstream)
 
@@ -648,9 +648,9 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 3
+Branches synced: 4
 Branches created: 0
-Branches up-to-date: 95
+Branches up-to-date: 94
 Branch conflicts: 11
   - zhaosiqi9/crmeb_java@master (diverged; manual resolution required)
   - zhaosiqi9/dsh-free-search@master (diverged; manual resolution required)
@@ -665,5 +665,5 @@ Branch conflicts: 11
   - zhaosiqi9/workbuddy2api-panel2@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 Branches skipped: 81
 Branches failed: 0
-Finished: 2026-11-27T13:02:26.453Z
+Finished: 2026-11-27T22:02:02.496Z
 ================================================================
