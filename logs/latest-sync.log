@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-27T06:00:12.481Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/45949084811
+Started: 2026-11-27T07:00:13.738Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/45955464331
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -76,7 +76,7 @@ Default branch: main
 Candidate branches: main, master, dev
 UP-TO-DATE: main (upstream f6a45d6cc9e1)
 UP-TO-DATE: master (upstream f6a45d6cc9e1)
-SYNCED: dev (merge_type=fast-forward, upstream 097f7c1125fb)
+SYNCED: dev (merge_type=fast-forward, upstream 69acdbd31606)
 
 ================================================================
 Repository: zhaosiqi9/DiPlay
@@ -234,7 +234,7 @@ Repository: zhaosiqi9/linkandroid
 Upstream: modstart-lib/linkandroid
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 2965667f128e)
+UP-TO-DATE: main (upstream 2965667f128e)
 UP-TO-DATE: master (upstream 2965667f128e)
 SKIP: dev (not present upstream)
 
@@ -316,7 +316,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 8dbccd12842f)
-SYNCED: dev (merge_type=fast-forward, upstream 1f5333bf9cab)
+SYNCED: dev (merge_type=fast-forward, upstream 273b5c9487c5)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -324,8 +324,8 @@ Repository: zhaosiqi9/open-design
 Upstream: nexu-io/open-design
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream 6a74a1521ea2)
-UP-TO-DATE: master (upstream 6a74a1521ea2)
+SYNCED: main (merge_type=fast-forward, upstream a7eb8e9f9bc4)
+UP-TO-DATE: master (upstream a7eb8e9f9bc4)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -334,7 +334,7 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream 3d1769ef0031)
+SYNCED: main (merge_type=merge, upstream 9b63aa9526d6)
 CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
@@ -344,8 +344,8 @@ Repository: zhaosiqi9/pebrel
 Upstream: Kuddev/pebrel
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream cda74a886f7e)
-UP-TO-DATE: master (upstream cda74a886f7e)
+SYNCED: main (merge_type=fast-forward, upstream 078e98390224)
+UP-TO-DATE: master (upstream 078e98390224)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -534,8 +534,8 @@ Repository: zhaosiqi9/Windows-MCP
 Upstream: CursorTouch/Windows-MCP
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream e788eda758b2)
-UP-TO-DATE: master (upstream e788eda758b2)
+SYNCED: main (merge_type=fast-forward, upstream ccbe664616e3)
+UP-TO-DATE: master (upstream ccbe664616e3)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -574,7 +574,7 @@ Repository: zhaosiqi9/workbuddy2api-panel2
 Upstream: misakano7545/workbuddy2api-panel
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream 7e9f53b4ec4a)
+SYNCED: main (merge_type=merge, upstream 89c3c93f9877)
 CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
@@ -648,9 +648,9 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 3
+Branches synced: 7
 Branches created: 0
-Branches up-to-date: 95
+Branches up-to-date: 91
 Branch conflicts: 11
   - zhaosiqi9/crmeb_java@master (diverged; manual resolution required)
   - zhaosiqi9/dsh-free-search@master (diverged; manual resolution required)
@@ -665,5 +665,5 @@ Branch conflicts: 11
   - zhaosiqi9/workbuddy2api-panel2@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 Branches skipped: 81
 Branches failed: 0
-Finished: 2026-11-27T06:01:58.926Z
+Finished: 2026-11-27T07:02:25.887Z
 ================================================================
