@@ -1,6 +1,6 @@
 GITHUB FORK AUTO SYNC (main/master/dev)
-Started: 2026-11-28T07:00:09.883Z
-Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/46119143984
+Started: 2026-11-28T08:00:13.119Z
+Workflow run: https://github.com/zhaosiqi9/fork-syncer/actions/runs/46123733912
 Policy: create missing fork branches from upstream; never force-push; never delete branches.
 
 Authenticated GitHub user: zhaosiqi9
@@ -234,7 +234,7 @@ Repository: zhaosiqi9/linkandroid
 Upstream: modstart-lib/linkandroid
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=fast-forward, upstream 44e3c55bcefb)
+UP-TO-DATE: main (upstream 44e3c55bcefb)
 UP-TO-DATE: master (upstream 44e3c55bcefb)
 SKIP: dev (not present upstream)
 
@@ -316,7 +316,7 @@ Default branch: dev
 Candidate branches: main, master, dev
 SKIP: main (not present upstream)
 UP-TO-DATE: master (upstream 8dbccd12842f)
-SYNCED: dev (merge_type=fast-forward, upstream 8e2d38e2d429)
+SYNCED: dev (merge_type=fast-forward, upstream 1a3f88cfe69b)
 
 ================================================================
 Repository: zhaosiqi9/open-design
@@ -334,7 +334,7 @@ Repository: zhaosiqi9/openidea
 Upstream: l0ng-ai/openidea
 Default branch: main
 Candidate branches: main, master, dev
-SYNCED: main (merge_type=merge, upstream 4fb1cae91778)
+UP-TO-DATE: main (upstream 4fb1cae91778)
 CONFLICT: master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 SKIP: dev (not present upstream)
 
@@ -384,8 +384,8 @@ Repository: zhaosiqi9/rea
 Upstream: morluto/rea
 Default branch: main
 Candidate branches: main, master, dev
-UP-TO-DATE: main (upstream 8ff3570430ad)
-UP-TO-DATE: master (upstream 8ff3570430ad)
+SYNCED: main (merge_type=fast-forward, upstream 76e319b80fe2)
+UP-TO-DATE: master (upstream 76e319b80fe2)
 SKIP: dev (not present upstream)
 
 ================================================================
@@ -648,9 +648,9 @@ Archived: 0
 Parent unavailable: 0
 Repository skipped: 0
 Repository failed: 0
-Branches synced: 3
+Branches synced: 2
 Branches created: 0
-Branches up-to-date: 95
+Branches up-to-date: 96
 Branch conflicts: 11
   - zhaosiqi9/crmeb_java@master (diverged; manual resolution required)
   - zhaosiqi9/dsh-free-search@master (diverged; manual resolution required)
@@ -665,5 +665,5 @@ Branch conflicts: 11
   - zhaosiqi9/workbuddy2api-panel2@master (not fast-forwardable: Reference does not exist; merge-upstream: Branch not found)
 Branches skipped: 81
 Branches failed: 0
-Finished: 2026-11-28T07:01:44.906Z
+Finished: 2026-11-28T08:02:00.861Z
 ================================================================
